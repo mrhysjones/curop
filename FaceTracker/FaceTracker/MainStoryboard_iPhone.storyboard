@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController title="Main View Controller" id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ey9-GF-oue"/>
+                        <viewControllerLayoutGuide type="bottom" id="nFZ-U5-gYl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjU-6U-uHz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fFI-hA-UHL">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem image="camera-32.png" id="BZQ-Mw-YPd">
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="initialiseVideo:" destination="2" id="07X-Mj-bGz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ngt-si-Ac5"/>
+                                    <barButtonItem image="switch_camera-32.png" style="plain" id="Lf1-IN-uM6">
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="switchCamera:" destination="2" id="RV7-iw-esQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="PK5-cS-JRc"/>
+                                    <barButtonItem image="name-32.png" id="CBG-iL-8r2">
+                                        <connections>
+                                            <action selector="faceTrack:" destination="2" id="MAi-26-aGw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ccj-VP-mj9"/>
+                                    <barButtonItem image="happy-32.png" width="33" id="ISx-Cv-lkZ">
+                                        <connections>
+                                            <action selector="selectEmotion:" destination="2" id="ufo-wo-Cyg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lJf-yB-aRr"/>
+                                    <barButtonItem image="settings-32.png" id="dxi-4m-4BJ">
+                                        <connections>
+                                            <action selector="settings:" destination="2" id="yKv-a7-7GS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fFI-hA-UHL" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="16p-24-ArT"/>
+                            <constraint firstItem="fFI-hA-UHL" firstAttribute="top" secondItem="gjU-6U-uHz" secondAttribute="bottom" id="3wA-jh-LfQ"/>
+                            <constraint firstItem="fFI-hA-UHL" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="9ra-QV-h6V"/>
+                            <constraint firstItem="gjU-6U-uHz" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="JFk-A0-WPv"/>
+                            <constraint firstItem="gjU-6U-uHz" firstAttribute="top" secondItem="3" secondAttribute="top" id="YNo-1S-Wul"/>
+                            <constraint firstItem="fFI-hA-UHL" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" id="cG3-0x-Ise"/>
+                            <constraint firstItem="gjU-6U-uHz" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="hsN-xO-h1P"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="initialiseVideoButton" destination="BZQ-Mw-YPd" id="w9Q-Ga-oFY"/>
+                        <outlet property="selectEmotionButton" destination="ISx-Cv-lkZ" id="Z4i-H9-KXW"/>
+                        <outlet property="settingsButton" destination="dxi-4m-4BJ" id="c0o-YF-CSD"/>
+                        <outlet property="showTrackingButton" destination="CBG-iL-8r2" id="NtY-Cc-uJ3"/>
+                        <outlet property="switchCameraButton" destination="Lf1-IN-uM6" id="kI0-V9-ITv"/>
+                        <outlet property="toolbar" destination="fFI-hA-UHL" id="oSN-bg-2x3"/>
+                        <outlet property="videoView" destination="gjU-6U-uHz" id="8Us-nU-fLc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera-32.png" width="32" height="32"/>
+        <image name="happy-32.png" width="32" height="32"/>
+        <image name="name-32.png" width="32" height="32"/>
+        <image name="settings-32.png" width="32" height="32"/>
+        <image name="switch_camera-32.png" width="32" height="32"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

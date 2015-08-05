@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA8E2A8E1B70F1D900A1EC4F"
+               BlueprintIdentifier = "CA8E2AC81B70FDB900A1EC4F"
                BuildableName = "FaceTracker.app"
                BlueprintName = "FaceTracker"
                ReferencedContainer = "container:FaceTracker.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA8E2AA71B70F1D900A1EC4F"
+               BlueprintIdentifier = "CA8E2AE11B70FDB900A1EC4F"
                BuildableName = "FaceTrackerTests.xctest"
                BlueprintName = "FaceTrackerTests"
                ReferencedContainer = "container:FaceTracker.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA8E2AA71B70F1D900A1EC4F"
+               BlueprintIdentifier = "CA8E2AE11B70FDB900A1EC4F"
                BuildableName = "FaceTrackerTests.xctest"
                BlueprintName = "FaceTrackerTests"
                ReferencedContainer = "container:FaceTracker.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA8E2A8E1B70F1D900A1EC4F"
+            BlueprintIdentifier = "CA8E2AC81B70FDB900A1EC4F"
             BuildableName = "FaceTracker.app"
             BlueprintName = "FaceTracker"
             ReferencedContainer = "container:FaceTracker.xcodeproj">
@@ -76,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA8E2A8E1B70F1D900A1EC4F"
+            BlueprintIdentifier = "CA8E2AC81B70FDB900A1EC4F"
             BuildableName = "FaceTracker.app"
             BlueprintName = "FaceTracker"
             ReferencedContainer = "container:FaceTracker.xcodeproj">
@@ -95,7 +95,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA8E2A8E1B70F1D900A1EC4F"
+            BlueprintIdentifier = "CA8E2AC81B70FDB900A1EC4F"
             BuildableName = "FaceTracker.app"
             BlueprintName = "FaceTracker"
             ReferencedContainer = "container:FaceTracker.xcodeproj">
