@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <opencv2/videoio/cap_ios.h>
 #import <opencv2/imgproc.hpp>
-
+#import "trackerWrapper.h"
 
 @interface ViewController : UIViewController<CvVideoCameraDelegate>
 {
@@ -19,6 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *videoView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
+@property (strong, nonatomic) trackerWrapper *tracker;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *initialiseVideoButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *switchCameraButton;

@@ -37,56 +37,45 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __FCheck_h_
-#define __FCheck_h_
-#include "PAW.h"
-#include <vector>
+#ifndef __PDM_h_
+#define __PDM_h_
+#include "IO.h"
 namespace FACETRACKER
 {
   //===========================================================================
   /** 
-      Checks for Tracking Failure
+      A 3D Point Distribution Model
   */
-  class FCheck{
+  class PDM{
   public:    
-    PAW     _paw; /**< Piecewise affine warp */
-    double  _b;   /**< SVM bias              */
-    cv::Mat _w;   /**< SVM gain              */
+    cv::Mat _V; /**< basis of variation                            */
+    cv::Mat _E; /**< vector of eigenvalues (row vector)            */
+    cv::Mat _M; /**< mean 3D shape vector [x1,..,xn,y1,...yn]      */
 
-    FCheck(){;}
-    FCheck(const char* fname){this->Load(fname);}
-    FCheck(double b, cv::Mat &w, PAW &paw){this->Init(b,w,paw);}
-    FCheck& operator=(FCheck const&rhs);
-    void Init(double b, cv::Mat &w, PAW &paw);
+    PDM(){;}
+    PDM(const char* fname){this->Load(fname);}
+    PDM(cv::Mat &M,cv::Mat &V,cv::Mat &E){this->Init(M,V,E);}
+    PDM& operator=(PDM const&rhs);
+    inline int nPoints(){return _M.rows/3;}
+    inline int nModes(){return _V.cols;}
+    inline double Var(int i){assert(i<_E.cols); return _E.at<double>(0,i);}
     void Load(const char* fname);
     void Save(const char* fname);
     void Write(std::ofstream &s);
     void Read(std::ifstream &s,bool readType = true);
-    bool Check(cv::Mat &im,cv::Mat &s);
+    void Clamp(cv::Mat &p,double c);
+    void Init(cv::Mat &M,cv::Mat &V,cv::Mat &E);
+    void Identity(cv::Mat &plocal,cv::Mat &pglobl);
+    void CalcShape3D(cv::Mat &s,cv::Mat &plocal);
+    void CalcShape2D(cv::Mat &s,cv::Mat &plocal,cv::Mat &pglobl);
+    void CalcParams(cv::Mat &s,cv::Mat &plocal,cv::Mat &pglobl);
+    void CalcRigidJacob(cv::Mat &plocal,cv::Mat &pglobl,cv::Mat &Jacob);
+    void CalcJacob(cv::Mat &plocal,cv::Mat &pglobl,cv::Mat &Jacob);
+    void CalcReferenceUpdate(cv::Mat &dp,cv::Mat &plocal,cv::Mat &pglobl);
+    void ApplySimT(double a,double b,double tx,double ty,cv::Mat &pglobl);
     
   private:
-    cv::Mat crop_,vec_;
-  };
-  //===========================================================================
-  /** 
-      Checks for Multiview Tracking Failure
-  */
-  class MFCheck{
-  public:    
-    std::vector<FCheck> _fcheck; /**< FCheck for each view */
-    
-    MFCheck(){;}
-    MFCheck(const char* fname){this->Load(fname);}
-    MFCheck(std::vector<FCheck> &fcheck){this->Init(fcheck);}
-    MFCheck& operator=(MFCheck const&rhs){      
-      this->_fcheck = rhs._fcheck; return *this;
-    }
-    void Init(std::vector<FCheck> &fcheck){_fcheck = fcheck;}
-    void Load(const char* fname);
-    void Save(const char* fname);
-    void Write(std::ofstream &s);
-    void Read(std::ifstream &s,bool readType = true);
-    bool Check(int idx,cv::Mat &im,cv::Mat &s);
+    cv::Mat S_,R_,s_,P_,Px_,Py_,Pz_,R1_,R2_,R3_;
   };
   //===========================================================================
 }

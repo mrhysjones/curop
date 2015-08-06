@@ -50,16 +50,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+// Initialise the camera on button press
 - (IBAction)initialiseVideo:(id)sender {
     [videoCamera start];
 }
 
+// Change between front/back camera on button press
 - (IBAction)switchCamera:(id)sender {
     [videoCamera switchCameras];
 }
 
 - (IBAction)faceTrack:(id)sender {
-
 }
 
 - (IBAction)selectEmotion:(id)sender {
@@ -70,43 +72,20 @@
     // Show FPS, white balance, exposure on a different screen..
 }
 
-
 - (void)processImage:(cv::Mat&)image
 {
-    cv::Mat image_copy;
-    cvtColor(image, image_copy, CV_BGRA2BGR);
+    self.tracker = [[trackerWrapper alloc] init];
+    [self.tracker initialiseModel];
+    [self.tracker initialiseValues];
+    [self.tracker trackWithCvMat:image];
     
 }
 
 
-void Draw(cv::Mat &image, cv::Mat &shape, cv::Mat &con, cv::Mat &tri,
-          cv::Mat &visi, cv::Mat &rshape) {
-    int i, n = shape.rows / 2;
-    cv::Point p1, p2;
-    cv::Scalar c;
-    
-    // draw rect shape
-    for (i = 0; i < n; i++) {
-        if (visi.at<int>(i, 0) == 0)
-            continue;
-        p1 = cv::Point(rshape.at<double>(i, 0), rshape.at<double>(i + n, 0));
-        c = CV_RGB(0,255,0);
-        cv::circle(image, p1, 2, c);
-        cv::putText(image, std::to_string(i+1),p1,CV_FONT_HERSHEY_PLAIN,0.5,cv::Scalar::all(0));
-    } 
-    
-    //draw points
-    for (i = 0; i < n; i++) {
-        if (visi.at<int>(i, 0) == 0)
-            continue;
-        p1 = cv::Point(shape.at<double>(i, 0), shape.at<double>(i + n, 0));
-        c = CV_RGB(255,0,0);
-        cv::circle(image, p1, 2, c);
-        cv::putText(image, std::to_string(i+1),p1,CV_FONT_HERSHEY_PLAIN,0.5,cv::Scalar::all(0));
-    }
-    return;
-    
-}
+
+
+
+
 
 
 

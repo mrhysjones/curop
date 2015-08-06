@@ -38,7 +38,7 @@
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
 #include "IO.h"
-#include <stdio.h>
+#include "stdio.h"
 using namespace FACETRACKER;
 using namespace std;
 //===========================================================================

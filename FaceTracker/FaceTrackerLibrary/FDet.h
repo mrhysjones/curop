@@ -37,62 +37,47 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __Patch_h_
-#define __Patch_h_
+#ifndef __FDet_h_
+#define __FDet_h_
 #include "IO.h"
-#include <opencv2/imgproc/imgproc.hpp>
 namespace FACETRACKER
 {
   //===========================================================================
   /** 
-      A Patch Expert
+      A wrapper for OpenCV's face detector
   */
-  class Patch{
-  public:
-    int     _t; /**< Type of patch (0=raw,1=grad,2=lbp) */
-    double  _a; /**< scaling                            */
-    double  _b; /**< bias                               */
-    cv::Mat _W; /**< Gain                               */
-    
-    Patch(){;}
-    Patch(const char* fname){this->Load(fname);}
-    Patch(int t,double a,double b,cv::Mat &W){this->Init(t,a,b,W);}
-    Patch& operator=(Patch const&rhs);
-    inline int w(){return _W.cols;}
-    inline int h(){return _W.rows;}
+  class FDet{
+  public:    
+    int                      _min_neighbours; /**< see OpenCV documentation */
+    int                      _min_size;       /**< ...                      */
+    double                   _img_scale;      /**< ...                      */
+    double                   _scale_factor;   /**< ...                      */
+    CvHaarClassifierCascade* _cascade;        /**< ...                      */
+
+    FDet(){storage_=NULL;_cascade=NULL;}
+    FDet(const char* fname){this->Load(fname);}
+    FDet(const char*  cascFile,
+	 const double img_scale = 1.3,
+	 const double scale_factor = 1.1,
+	 const int    min_neighbours = 2,
+	 const int    min_size = 30){
+      this->Init(cascFile,img_scale,scale_factor,min_neighbours,min_size);
+    }
+    ~FDet();
+    FDet& operator=(FDet const&rhs);
+    void Init(const char* fname,
+	      const double img_scale = 1.3,
+	      const double scale_factor = 1.1,
+	      const int    min_neighbours = 2,
+	      const int    min_size = 30);
+    cv::Rect Detect(cv::Mat im);
     void Load(const char* fname);
     void Save(const char* fname);
     void Write(std::ofstream &s);
     void Read(std::ifstream &s,bool readType = true);
-    void Init(int t, double a, double b, cv::Mat &W);
-    void Response(cv::Mat &im,cv::Mat &resp);    
-
-  private:
-    cv::Mat im_,res_;
-  };
-  //===========================================================================
-  /**
-     A Multi-patch Expert
-  */
-  class MPatch{
-  public:
-    int _w,_h;             /**< Width and height of patch */
-    std::vector<Patch> _p; /**< List of patches           */
     
-    MPatch(){;}
-    MPatch(const char* fname){this->Load(fname);}
-    MPatch(std::vector<Patch> &p){this->Init(p);}
-    MPatch& operator=(MPatch const&rhs);
-    inline int nPatch(){return _p.size();}
-    void Load(const char* fname);
-    void Save(const char* fname);
-    void Write(std::ofstream &s);
-    void Read(std::ifstream &s,bool readType = true);
-    void Init(std::vector<Patch> &p);
-    void Response(cv::Mat &im,cv::Mat &resp);    
-
   private:
-    cv::Mat res_;
+    cv::Mat small_img_; CvMemStorage* storage_;
   };
   //===========================================================================
 }
