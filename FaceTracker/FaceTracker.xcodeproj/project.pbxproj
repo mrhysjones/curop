@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA3CB5111B7378230056E3C9 /* imageConversion.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5101B7378230056E3C9 /* imageConversion.mm */; };
 		CA3CB5141B737C3C0056E3C9 /* trackerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */; };
+		CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */; };
 		CA4E2B141B7365B7005E92C5 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B041B7365B7005E92C5 /* CLM.cc */; };
 		CA4E2B151B7365B7005E92C5 /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B061B7365B7005E92C5 /* FCheck.cc */; };
 		CA4E2B161B7365B7005E92C5 /* FDet.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B081B7365B7005E92C5 /* FDet.cc */; };
@@ -26,7 +27,6 @@
 		CA8E2AD51B70FDB900A1EC4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD41B70FDB900A1EC4F /* ViewController.m */; };
 		CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */; };
 		CA8E2ADD1B70FDB900A1EC4F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2ADB1B70FDB900A1EC4F /* LaunchScreen.xib */; };
-		CAD11FA41B713201003ED990 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FA21B713201003ED990 /* MainStoryboard_iPad.storyboard */; };
 		CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */; };
 		CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */; };
 		CAD11FAF1B713977003ED990 /* camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAE1B713977003ED990 /* camera-32.png */; };
@@ -52,6 +52,7 @@
 		CA3CB5101B7378230056E3C9 /* imageConversion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = imageConversion.mm; sourceTree = "<group>"; };
 		CA3CB5121B737C3C0056E3C9 /* trackerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trackerWrapper.h; path = ../trackerWrapper.h; sourceTree = "<group>"; };
 		CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = trackerWrapper.mm; path = ../trackerWrapper.mm; sourceTree = "<group>"; };
+		CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = ../MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		CA4E2B041B7365B7005E92C5 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLM.cc; sourceTree = "<group>"; };
 		CA4E2B051B7365B7005E92C5 /* CLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLM.h; sourceTree = "<group>"; };
 		CA4E2B061B7365B7005E92C5 /* FCheck.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FCheck.cc; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		CA8E2AD41B70FDB900A1EC4F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA8E2ADC1B70FDB900A1EC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CAD11FA21B713201003ED990 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera-32.png"; sourceTree = "<group>"; };
 		CAD11FAE1B713977003ED990 /* camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-32.png"; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 				CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */,
 				CA8E2AD31B70FDB900A1EC4F /* ViewController.h */,
 				CA8E2AD41B70FDB900A1EC4F /* ViewController.m */,
-				CAD11FA21B713201003ED990 /* MainStoryboard_iPad.storyboard */,
+				CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */,
 				CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */,
 				CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */,
 				CA8E2ADB1B70FDB900A1EC4F /* LaunchScreen.xib */,
@@ -301,10 +301,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */,
 				CA4E2B231B7365FD005E92C5 /* face.tri in Resources */,
 				CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */,
 				CAD11FB51B716C84003ED990 /* name-32.png in Resources */,
-				CAD11FA41B713201003ED990 /* MainStoryboard_iPad.storyboard in Resources */,
 				CAD11FAF1B713977003ED990 /* camera-32.png in Resources */,
 				CAD11FB41B716C84003ED990 /* happy-32.png in Resources */,
 				CA4E2B211B7365FD005E92C5 /* face.con in Resources */,
@@ -457,6 +457,7 @@
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/FaceTracker";
 				INFOPLIST_FILE = FaceTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +497,7 @@
 					"$(PROJECT_DIR)/FaceTracker",
 				);
 				INFOPLIST_FILE = FaceTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
