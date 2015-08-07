@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <mach/mach_time.h>
 
 @interface ViewController ()
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    prevTime = mach_absolute_time();
     
     self.videoCamera = [[CvVideoCamera alloc]
                         initWithParentView:videoView];
@@ -33,6 +35,15 @@
     AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
 
+}
+
+// Converts measured time to seconds for display
+static double machTimeToSecs(uint64_t time)
+{
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    return (double)time * (double)timebase.numer /
+    (double)timebase.denom / 1e9;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -62,10 +73,12 @@
 }
 
 - (IBAction)faceTrack:(id)sender {
+    // Want to control which facial points you see - connections/triangles/points
 }
 
-- (IBAction)selectEmotion:(id)sender {
 
+- (IBAction)selectEmotion:(id)sender {
+    // Ideally want a means of controlling which predictions you see
 }
 
 - (IBAction)settings:(id)sender {
@@ -74,10 +87,24 @@
 
 - (void)processImage:(cv::Mat&)image
 {
+    // Face tracking and emotion classification
     self.tracker = [[trackerWrapper alloc] init];
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
     [self.tracker trackWithCvMat:image];
+    
+    
+    // Add FPS to the image view
+    uint64_t currTime = mach_absolute_time();
+    double timeInSeconds = machTimeToSecs(currTime - prevTime);
+    prevTime = currTime;
+    double fps = 1.0 / timeInSeconds;
+    NSString* fpsString =
+    [NSString stringWithFormat:@"FPS = %3.2f",
+     fps];
+    cv::putText(image, [fpsString UTF8String],
+                cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX_SMALL,
+                0.8, cv::Scalar::all(0));
     
 }
 

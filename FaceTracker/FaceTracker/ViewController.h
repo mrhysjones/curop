@@ -13,6 +13,7 @@
 @interface ViewController : UIViewController<CvVideoCameraDelegate>
 {
     CvVideoCamera* videoCamera;
+    uint64_t prevTime;
 }
 
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
