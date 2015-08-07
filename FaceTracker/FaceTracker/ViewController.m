@@ -34,6 +34,10 @@
     self.videoCamera.defaultAVCaptureVideoOrientation =
     AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
+    
+    self.tracker = [[trackerWrapper alloc] init];
+    [self.tracker initialiseModel];
+    [self.tracker initialiseValues];
 
 }
 
@@ -82,15 +86,12 @@ static double machTimeToSecs(uint64_t time)
 }
 
 - (IBAction)settings:(id)sender {
-    // Show FPS, white balance, exposure on a different screen..
+    // Show FPS, white balance, exposure...
 }
 
 - (void)processImage:(cv::Mat&)image
 {
     // Face tracking and emotion classification
-    self.tracker = [[trackerWrapper alloc] init];
-    [self.tracker initialiseModel];
-    [self.tracker initialiseValues];
     [self.tracker trackWithCvMat:image];
     
     
@@ -107,13 +108,5 @@ static double machTimeToSecs(uint64_t time)
                 0.8, cv::Scalar::all(0));
     
 }
-
-
-
-
-
-
-
-
 
 @end
