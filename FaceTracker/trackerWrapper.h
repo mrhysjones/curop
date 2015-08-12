@@ -15,10 +15,6 @@
 
 @interface trackerWrapper : NSObject
 
-
-
-
-
 -(void)initialiseModel;
 -(void)initialiseValues;
 -(void)resetModel;

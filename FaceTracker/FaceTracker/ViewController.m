@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <mach/mach_time.h>
 
 @interface ViewController ()
 
@@ -18,46 +17,29 @@
 @synthesize videoView;
 @synthesize toolbar;
 @synthesize initialiseVideoButton;
-@synthesize videoCamera;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    prevTime = mach_absolute_time();
     
-    self.videoCamera = [[CvVideoCamera alloc]
-                        initWithParentView:videoView];
-    self.videoCamera.delegate = self;
-    self.videoCamera.defaultAVCaptureDevicePosition =
-    AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset =
-    AVCaptureSessionPreset640x480;
-    self.videoCamera.defaultAVCaptureVideoOrientation =
-    AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = 30;
-    
+    // Face tracker initialisation
     self.tracker = [[trackerWrapper alloc] init];
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
-
+    
 }
 
-// Converts measured time to seconds for display
-static double machTimeToSecs(uint64_t time)
-{
-    mach_timebase_info_data_t timebase;
-    mach_timebase_info(&timebase);
-    return (double)time * (double)timebase.numer /
-    (double)timebase.denom / 1e9;
-}
 
+
+// Programmatic way of ensuring the status bar hidden
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
 
+
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
     [videoCamera stop];
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,16 +50,12 @@ static double machTimeToSecs(uint64_t time)
 
 // Initialise the camera on button press
 - (IBAction)initialiseVideo:(id)sender {
-    [videoCamera start];
+    [self createAndRunNewSession];
 }
 
-// Change between front/back camera on button press
-- (IBAction)switchCamera:(id)sender {
-    [videoCamera switchCameras];
-}
-
+// Method that resets the tracker if it's not picking up face correctly
 - (IBAction)faceTrack:(id)sender {
-    // Want to control which facial points you see - connections/triangles/points
+    [self.tracker resetModel];
 }
 
 
@@ -93,20 +71,73 @@ static double machTimeToSecs(uint64_t time)
 {
     // Face tracking and emotion classification
     [self.tracker trackWithCvMat:image];
-    
-    
+
     // Add FPS to the image view
-    uint64_t currTime = mach_absolute_time();
-    double timeInSeconds = machTimeToSecs(currTime - prevTime);
-    prevTime = currTime;
-    double fps = 1.0 / timeInSeconds;
-    NSString* fpsString =
-    [NSString stringWithFormat:@"FPS = %3.2f",
-     fps];
-    cv::putText(image, [fpsString UTF8String],
-                cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX_SMALL,
-                0.8, cv::Scalar::all(0));
+
+}
+
+
+#pragma mark - AVFoundationCode
+- (AVCaptureDevice *) findFrontCamera
+{
+    AVCaptureDevice *frontCamera = nil;
+    NSArray *devices = [AVCaptureDevice devices];
+    for (AVCaptureDevice *currentDevice in devices) {
+        NSLog(@"%@", currentDevice);
+        if ([currentDevice hasMediaType:AVMediaTypeVideo]) {
+            if ([currentDevice position] == AVCaptureDevicePositionFront) {
+                
+                frontCamera =  currentDevice;
+            }
+            
+        }
+        
+    }
+    return frontCamera;
+}
+
+- (void) createAndRunNewSession
+{
+    self.session = [[AVCaptureSession alloc] init];
+    self.session.sessionPreset = AVCaptureSessionPresetHigh;
+    
+    self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    self.device = [self findFrontCamera];
+    self.input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
+    
+    self.output = [[AVCaptureVideoDataOutput alloc] init];
+    self.output.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    self.output.alwaysDiscardsLateVideoFrames = YES;
+
+    dispatch_queue_t queue;
+    queue = dispatch_queue_create("new_queue", NULL);
+    
+    [self.output setSampleBufferDelegate:self queue:queue];
+    
+    [self.session addInput:self.input];
+    [self.session addOutput:self.output];
+    [self.session startRunning];
+    
     
 }
+
+- (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
+    
+    @autoreleasepool {
+        
+        CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        
+        // start tracking data and get image of tracked face
+        UIImage *trackedImage = [self.tracker trackWithCVImageBufferRef:imageBuffer];
+
+        // Show modified image on video view
+        [self.videoView performSelectorOnMainThread:@selector(setImage:) withObject:trackedImage waitUntilDone:YES];
+
+    }
+}
+
+
 
 @end

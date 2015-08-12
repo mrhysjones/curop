@@ -22,17 +22,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fFI-hA-UHL">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hNf-ek-7cc"/>
                                     <barButtonItem image="camera-32.png" id="BZQ-Mw-YPd">
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="initialiseVideo:" destination="2" id="07X-Mj-bGz"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ngt-si-Ac5"/>
-                                    <barButtonItem image="switch_camera-32.png" style="plain" id="Lf1-IN-uM6">
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="switchCamera:" destination="2" id="RV7-iw-esQ"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="PK5-cS-JRc"/>
@@ -53,6 +47,7 @@
                                             <action selector="settings:" destination="2" id="yKv-a7-7GS"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kT7-Zi-x0D"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -67,6 +62,7 @@
                             <constraint firstItem="gjU-6U-uHz" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="hsN-xO-h1P"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="dLj-64-fWu"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -75,7 +71,6 @@
                         <outlet property="selectEmotionButton" destination="ISx-Cv-lkZ" id="Z4i-H9-KXW"/>
                         <outlet property="settingsButton" destination="dxi-4m-4BJ" id="c0o-YF-CSD"/>
                         <outlet property="showTrackingButton" destination="CBG-iL-8r2" id="NtY-Cc-uJ3"/>
-                        <outlet property="switchCameraButton" destination="Lf1-IN-uM6" id="kI0-V9-ITv"/>
                         <outlet property="toolbar" destination="fFI-hA-UHL" id="oSN-bg-2x3"/>
                         <outlet property="videoView" destination="gjU-6U-uHz" id="8Us-nU-fLc"/>
                     </connections>
@@ -89,7 +84,6 @@
         <image name="happy-32.png" width="32" height="32"/>
         <image name="name-32.png" width="32" height="32"/>
         <image name="settings-32.png" width="32" height="32"/>
-        <image name="switch_camera-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

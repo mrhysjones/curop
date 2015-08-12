@@ -7,26 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA3CB5111B7378230056E3C9 /* imageConversion.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5101B7378230056E3C9 /* imageConversion.mm */; };
-		CA3CB5141B737C3C0056E3C9 /* trackerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */; };
 		CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */; };
-		CA4E2B141B7365B7005E92C5 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B041B7365B7005E92C5 /* CLM.cc */; };
-		CA4E2B151B7365B7005E92C5 /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B061B7365B7005E92C5 /* FCheck.cc */; };
-		CA4E2B161B7365B7005E92C5 /* FDet.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B081B7365B7005E92C5 /* FDet.cc */; };
-		CA4E2B171B7365B7005E92C5 /* IO.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0A1B7365B7005E92C5 /* IO.cc */; };
-		CA4E2B181B7365B7005E92C5 /* Patch.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0C1B7365B7005E92C5 /* Patch.cc */; };
-		CA4E2B191B7365B7005E92C5 /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0E1B7365B7005E92C5 /* PAW.cc */; };
-		CA4E2B1A1B7365B7005E92C5 /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B101B7365B7005E92C5 /* PDM.cc */; };
-		CA4E2B1B1B7365B7005E92C5 /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B121B7365B7005E92C5 /* Tracker.cc */; };
+		CA3CB52D1B78A9480056E3C9 /* emotions.train.pca.range in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB52C1B78A9480056E3C9 /* emotions.train.pca.range */; };
+		CA3CB52F1B78A9580056E3C9 /* emotions.train.pca.model in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB52E1B78A9580056E3C9 /* emotions.train.pca.model */; };
+		CA3CB5331B78B35E0056E3C9 /* imageConversion.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5101B7378230056E3C9 /* imageConversion.mm */; };
+		CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */; };
+		CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */; };
+		CA3CB5361B78B35E0056E3C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD41B70FDB900A1EC4F /* ViewController.m */; };
+		CA3CB5371B78B3900056E3C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2ACE1B70FDB900A1EC4F /* main.m */; };
+		CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5261B78A72B0056E3C9 /* svm.cpp */; };
+		CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B041B7365B7005E92C5 /* CLM.cc */; };
+		CA3CB53A1B78B3B50056E3C9 /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B061B7365B7005E92C5 /* FCheck.cc */; };
+		CA3CB53B1B78B3B50056E3C9 /* FDet.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B081B7365B7005E92C5 /* FDet.cc */; };
+		CA3CB53C1B78B3B50056E3C9 /* IO.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0A1B7365B7005E92C5 /* IO.cc */; };
+		CA3CB53D1B78B3B50056E3C9 /* Patch.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0C1B7365B7005E92C5 /* Patch.cc */; };
+		CA3CB53E1B78B3B50056E3C9 /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0E1B7365B7005E92C5 /* PAW.cc */; };
+		CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B101B7365B7005E92C5 /* PDM.cc */; };
+		CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B121B7365B7005E92C5 /* Tracker.cc */; };
+		CA3CB54B1B78BBC50056E3C9 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5481B78BBC50056E3C9 /* pca_archive_mu.txt */; };
+		CA3CB54C1B78BBC50056E3C9 /* pca_archive_sigma.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5491B78BBC50056E3C9 /* pca_archive_sigma.txt */; };
+		CA3CB54D1B78BBC50056E3C9 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB54A1B78BBC50056E3C9 /* pca_archive_wt.txt */; };
+		CA4919451B7A8E2D006F504C /* vector.pca in Resources */ = {isa = PBXBuildFile; fileRef = CA4919441B7A8E2D006F504C /* vector.pca */; };
+		CA4919461B7A913B006F504C /* merge_files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5281B78A8470056E3C9 /* merge_files.cpp */; };
 		CA4E2B211B7365FD005E92C5 /* face.con in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1D1B7365FD005E92C5 /* face.con */; };
 		CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1E1B7365FD005E92C5 /* face.tracker */; };
 		CA4E2B231B7365FD005E92C5 /* face.tri in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1F1B7365FD005E92C5 /* face.tri */; };
 		CA4E2B241B7365FD005E92C5 /* face2.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B201B7365FD005E92C5 /* face2.tracker */; };
-		CA8E2ACF1B70FDB900A1EC4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2ACE1B70FDB900A1EC4F /* main.m */; };
-		CA8E2AD21B70FDB900A1EC4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */; };
-		CA8E2AD51B70FDB900A1EC4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD41B70FDB900A1EC4F /* ViewController.m */; };
 		CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */; };
-		CA8E2ADD1B70FDB900A1EC4F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2ADB1B70FDB900A1EC4F /* LaunchScreen.xib */; };
 		CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */; };
 		CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */; };
 		CAD11FAF1B713977003ED990 /* camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAE1B713977003ED990 /* camera-32.png */; };
@@ -53,6 +60,16 @@
 		CA3CB5121B737C3C0056E3C9 /* trackerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trackerWrapper.h; path = ../trackerWrapper.h; sourceTree = "<group>"; };
 		CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = trackerWrapper.mm; path = ../trackerWrapper.mm; sourceTree = "<group>"; };
 		CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = ../MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		CA3CB5241B78A54B0056E3C9 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svm.h; sourceTree = "<group>"; };
+		CA3CB5261B78A72B0056E3C9 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cpp; sourceTree = "<group>"; };
+		CA3CB5281B78A8470056E3C9 /* merge_files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = merge_files.cpp; path = FaceTracker/merge_files.cpp; sourceTree = "<group>"; };
+		CA3CB5291B78A8470056E3C9 /* merge_files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = merge_files.h; path = FaceTracker/merge_files.h; sourceTree = "<group>"; };
+		CA3CB52C1B78A9480056E3C9 /* emotions.train.pca.range */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.range; sourceTree = "<group>"; };
+		CA3CB52E1B78A9580056E3C9 /* emotions.train.pca.model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.model; sourceTree = "<group>"; };
+		CA3CB5481B78BBC50056E3C9 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pca_archive_mu.txt; path = FaceTracker/pca_archive_mu.txt; sourceTree = "<group>"; };
+		CA3CB5491B78BBC50056E3C9 /* pca_archive_sigma.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pca_archive_sigma.txt; path = FaceTracker/pca_archive_sigma.txt; sourceTree = "<group>"; };
+		CA3CB54A1B78BBC50056E3C9 /* pca_archive_wt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pca_archive_wt.txt; path = FaceTracker/pca_archive_wt.txt; sourceTree = "<group>"; };
+		CA4919441B7A8E2D006F504C /* vector.pca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vector.pca; path = FaceTracker.xcodeproj/vector.pca; sourceTree = "<group>"; };
 		CA4E2B041B7365B7005E92C5 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLM.cc; sourceTree = "<group>"; };
 		CA4E2B051B7365B7005E92C5 /* CLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLM.h; sourceTree = "<group>"; };
 		CA4E2B061B7365B7005E92C5 /* FCheck.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FCheck.cc; sourceTree = "<group>"; };
@@ -125,6 +142,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA3CB51C1B78A4F70056E3C9 /* LibSVM */ = {
+			isa = PBXGroup;
+			children = (
+				CA3CB5281B78A8470056E3C9 /* merge_files.cpp */,
+				CA3CB5291B78A8470056E3C9 /* merge_files.h */,
+				CA3CB5261B78A72B0056E3C9 /* svm.cpp */,
+				CA3CB5241B78A54B0056E3C9 /* svm.h */,
+			);
+			name = LibSVM;
+			sourceTree = "<group>";
+		};
+		CA3CB52B1B78A9270056E3C9 /* Classifier */ = {
+			isa = PBXGroup;
+			children = (
+				CA4919441B7A8E2D006F504C /* vector.pca */,
+				CA3CB5481B78BBC50056E3C9 /* pca_archive_mu.txt */,
+				CA3CB5491B78BBC50056E3C9 /* pca_archive_sigma.txt */,
+				CA3CB54A1B78BBC50056E3C9 /* pca_archive_wt.txt */,
+				CA3CB52E1B78A9580056E3C9 /* emotions.train.pca.model */,
+				CA3CB52C1B78A9480056E3C9 /* emotions.train.pca.range */,
+			);
+			name = Classifier;
+			sourceTree = "<group>";
+		};
 		CA4E2B031B7365B7005E92C5 /* FaceTracker Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +205,8 @@
 		CA8E2AC01B70FDB900A1EC4F = {
 			isa = PBXGroup;
 			children = (
+				CA3CB52B1B78A9270056E3C9 /* Classifier */,
+				CA3CB51C1B78A4F70056E3C9 /* LibSVM */,
 				CA4E2B1C1B7365FD005E92C5 /* FaceTracker Model */,
 				CA4E2B031B7365B7005E92C5 /* FaceTracker Library */,
 				CA8E2ACB1B70FDB900A1EC4F /* Face Tracking App */,
@@ -301,19 +344,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3CB52F1B78A9580056E3C9 /* emotions.train.pca.model in Resources */,
 				CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */,
 				CA4E2B231B7365FD005E92C5 /* face.tri in Resources */,
+				CA4919451B7A8E2D006F504C /* vector.pca in Resources */,
 				CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */,
+				CA3CB54B1B78BBC50056E3C9 /* pca_archive_mu.txt in Resources */,
 				CAD11FB51B716C84003ED990 /* name-32.png in Resources */,
 				CAD11FAF1B713977003ED990 /* camera-32.png in Resources */,
 				CAD11FB41B716C84003ED990 /* happy-32.png in Resources */,
 				CA4E2B211B7365FD005E92C5 /* face.con in Resources */,
-				CA8E2ADD1B70FDB900A1EC4F /* LaunchScreen.xib in Resources */,
 				CA4E2B241B7365FD005E92C5 /* face2.tracker in Resources */,
 				CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */,
 				CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */,
 				CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */,
+				CA3CB54C1B78BBC50056E3C9 /* pca_archive_sigma.txt in Resources */,
 				CAD11FB71B716D99003ED990 /* settings-32.png in Resources */,
+				CA3CB52D1B78A9480056E3C9 /* emotions.train.pca.range in Resources */,
+				CA3CB54D1B78BBC50056E3C9 /* pca_archive_wt.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,19 +372,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8E2AD51B70FDB900A1EC4F /* ViewController.m in Sources */,
-				CA4E2B171B7365B7005E92C5 /* IO.cc in Sources */,
-				CA3CB5111B7378230056E3C9 /* imageConversion.mm in Sources */,
-				CA8E2AD21B70FDB900A1EC4F /* AppDelegate.m in Sources */,
-				CA4E2B191B7365B7005E92C5 /* PAW.cc in Sources */,
-				CA4E2B1B1B7365B7005E92C5 /* Tracker.cc in Sources */,
-				CA4E2B151B7365B7005E92C5 /* FCheck.cc in Sources */,
-				CA3CB5141B737C3C0056E3C9 /* trackerWrapper.mm in Sources */,
-				CA8E2ACF1B70FDB900A1EC4F /* main.m in Sources */,
-				CA4E2B1A1B7365B7005E92C5 /* PDM.cc in Sources */,
-				CA4E2B181B7365B7005E92C5 /* Patch.cc in Sources */,
-				CA4E2B141B7365B7005E92C5 /* CLM.cc in Sources */,
-				CA4E2B161B7365B7005E92C5 /* FDet.cc in Sources */,
+				CA4919461B7A913B006F504C /* merge_files.cpp in Sources */,
+				CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */,
+				CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */,
+				CA3CB53A1B78B3B50056E3C9 /* FCheck.cc in Sources */,
+				CA3CB53B1B78B3B50056E3C9 /* FDet.cc in Sources */,
+				CA3CB53C1B78B3B50056E3C9 /* IO.cc in Sources */,
+				CA3CB53D1B78B3B50056E3C9 /* Patch.cc in Sources */,
+				CA3CB53E1B78B3B50056E3C9 /* PAW.cc in Sources */,
+				CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */,
+				CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */,
+				CA3CB5371B78B3900056E3C9 /* main.m in Sources */,
+				CA3CB5331B78B35E0056E3C9 /* imageConversion.mm in Sources */,
+				CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */,
+				CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */,
+				CA3CB5361B78B35E0056E3C9 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,8 +495,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTracker",
 					"$(PROJECT_DIR)",
-					/Users/matthewjones/Desktop/FaceTracker2,
-					/Users/matthewjones/Desktop,
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -481,8 +529,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTracker",
 					"$(PROJECT_DIR)",
-					/Users/matthewjones/Desktop/FaceTracker2,
-					/Users/matthewjones/Desktop,
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

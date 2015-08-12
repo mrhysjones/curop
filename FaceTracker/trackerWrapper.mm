@@ -3,40 +3,40 @@
 //  iOSFaceTracker 2
 //
 //  Created by Tom Hartley on 01/12/2012.
+//  Modified by Matthew Jones on 10/08/2015
 //  Copyright (c) 2012 Tom Hartley. All rights reserved.
 //
 
 #import "trackerWrapper.h"
+#import "merge_files.h"
+#import <mach/mach_time.h>
 
-
+using namespace cv;
 
 
 @implementation trackerWrapper {
     int switchVal;
     
-    
-    
+    struct svm_model* svmmodel;
     
     FACETRACKER::Tracker model;
     cv::Mat tri;
     cv::Mat con;
     
-    
-    
-    
     std::vector<int> wSize1;
     std::vector<int> wSize2;
     std::vector<int> wSize;
-    
+
     
     bool fcheck;
     double scale;
     int fpd;
     bool show;
     
+    uint64_t prevTime;
+    
     int nIter;
     double clamp,fTol;
-    
     
     cv::Mat gray,im;
     
@@ -44,12 +44,11 @@
     
     imageConversion *imageConverter;
     
+    int eigsize;
+    std::vector<double> test, feat, mu, sigma, eigv[18];
+    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath;
     
 }
-
-
-
-
 
 
 -(void)initialiseModel
@@ -78,6 +77,8 @@
 
 -(void)initialiseValues
 {
+    prevTime = mach_absolute_time();
+    
     wSize1.resize(1);
     wSize2.resize(3);
     wSize1[0] = 7;
@@ -94,13 +95,31 @@
     fTol=0.01;
     failed = true;
     
-    
-    
+//    trainPath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"model"];
+//    
+//    trainRangePath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"range"];
+//    
+//    wtPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_wt" ofType:@"txt"];
+//    const char *wtPathString = [wtPath cStringUsingEncoding:NSASCIIStringEncoding];
+//    
+//    muPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_mu" ofType:@"txt"];
+//    const char *muPathString = [muPath cStringUsingEncoding:NSASCIIStringEncoding];
+//    
+//    sigmaPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_sigma" ofType:@"txt"];
+//    const char *sigmaPathString = [sigmaPath cStringUsingEncoding:NSASCIIStringEncoding];
+//    
+//    vectorPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:@"pca"];
+//    
+//    const char *trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
+//
+//    eigsize = 18;
+//    
+//    file2eig(wtPathString,eigv, eigsize);
+//    file2vect(muPathString, mu);
+//    file2vect(sigmaPathString, sigma);
+//    svmmodel = svm_load_model(trainPathString);
+
 }
-
-
-
-
 
 -(void) draw
 {
@@ -169,12 +188,34 @@
         
         [self draw];
         failed = false;
+        const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
+        const char *vectorPathString = [vectorPath cStringUsingEncoding:NSASCIIStringEncoding];
+
+//        vect2test(model._shape, test);
+//        pca_project(test, eigv, mu, sigma, eigsize, feat);
+//        featfiler(feat, vectorPath);
+//        svmrun(svmmodel, vectorPathString, trainRangePathString);
+        
         
     }else{
         
         [self resetModel];
         failed = true;
+        
     }
+    uint64_t currTime = mach_absolute_time();
+    double timeInSeconds = machTimeToSecs(currTime - prevTime);
+    prevTime = currTime;
+    double fps = 1.0 / timeInSeconds;
+    NSString* fpsString =
+    [NSString stringWithFormat:@"FPS = %3.2f",
+     fps];
+    cv::putText(im, [fpsString UTF8String],
+                cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX,
+                0.8, cv::Scalar::all(0));
+    
+    
+    
     
 }
 
@@ -195,15 +236,12 @@
     
     [self track];
     
-    
-    
     return [imageConverter UIImageFromMat:im];
     
 }
 
 -(UIImage *)trackWithCvMat:(cv::Mat)frame
 {
-    //frame =  image;
     
     if(scale == 1)im = frame;
     else cv::resize(frame,im,cv::Size(scale*frame.cols,scale*frame.rows));
@@ -215,56 +253,6 @@
     return [imageConverter UIImageFromMat:im];
     
 }
-
--(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer
-{
-    
-    
-    
-    CVPixelBufferLockBaseAddress(imageBuffer,0);
-    
-    /*Get information about the image*/
-    uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    //size_t stride = CVPixelBufferGetBytesPerRow(imageBuffer);
-    //NSLog(@"Frame captured: %lu x %lu", width,height);
-    
-    cv::Mat frame(height, width, CV_8UC4, (void*)baseAddress);
-    
-    // Make image the correct orientation for upwards iPad
-    cv::Mat dst;
-    cv::transpose(frame, dst);
-    cv::flip(dst, dst, 1);
-    
-    // Convert from native BGRA to RGBA
-    cvtColor(dst,frame,CV_BGRA2RGBA);
-    
-    
-    if(scale == 1)im = frame;
-    else cv::resize(frame,im,cv::Size(scale*frame.cols,scale*frame.rows));
-    cv::flip(im,im,1);
-    cv::cvtColor(im,gray,CV_BGR2GRAY);
-    
-    
-    
-    
-    
-    
-    
-    
-    [self track];
-    
-    
-
-    
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    
-    
-    return [imageConverter UIImageFromMat:im];
-    
-}
-
 
 
 - (NSMutableArray *)getRotation
@@ -272,16 +260,13 @@
     cv::Mat pose = model._clm._pglobl;
     
     NSMutableArray *rotationArray = [[NSMutableArray alloc] initWithCapacity:3];
-    
 
     
     for (int i = 0; i<3; i++) {
         
         [rotationArray addObject:[NSNumber numberWithDouble:pose.at<double>(i, 0)]];
     }
-    
-    
-    
+
 
     return rotationArray;
     
@@ -317,21 +302,6 @@
         [meshArray addObject:@[x,y,z]];
     }
     
-    //    static BOOL oneTimeTest = YES;
-    //
-    //    if(oneTimeTest) {
-    //        for (NSArray* xyz in meshArray) {
-    //            //NSLog(@"%@\n", xyz);
-    //
-    //            printf("{{%f,%f,%f}, {0.5,0.5,0.5,1}},\n", [[xyz objectAtIndex:0] doubleValue],[[xyz objectAtIndex:1] doubleValue],[[xyz objectAtIndex:2] doubleValue]);
-    //
-    //
-    //        }
-    //
-    //        oneTimeTest = NO;
-    //    }
-    
-    
     return meshArray;
 }
 
@@ -355,6 +325,299 @@
     
     return @[x,y,z];
 }
+
+void featfiler (std::vector<double> &feat, NSString * filename)
+{
+    NSString *fStr = [[NSString alloc]init];
+    for( std::vector<double>::size_type i=0; i<feat.size(); ++i ){
+        fStr = [fStr stringByAppendingFormat:@"%lu:%f \n", i+1, feat[i]];
+    }
+    [fStr writeToFile:filename
+           atomically:YES
+                 encoding:NSASCIIStringEncoding error:NULL];
+}
+
+void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
+{
+    std::string currentLine;
+    std::ifstream infile;
+    infile.open (filename);
+    int ctr=1, idx;
+    while(ctr<eigsize+1) // To get top 'eigsize' number of eigen vectors
+    {
+        
+        getline(infile,currentLine); // Saves the line in currentLine.
+        char *cstr = new char[currentLine.length() + 1];
+        strcpy(cstr, currentLine.c_str());
+        char *p = strtok(cstr, ",");
+        idx=1;
+        while (p) {
+            eigv[ctr-1].push_back(atof(p));
+            
+            //printf ("Token %d (%d): %f, size now(%lu)\n", ctr, idx, eigv[ctr-1].back(),eigv[ctr-1].size());
+            p = strtok(NULL, ",");
+            idx++;
+        }
+        ctr++;
+        
+    }
+    
+    infile.close();
+    return;
+}
+
+void pca_project (std::vector<double> &test, std::vector<double> eigv[],
+                  std::vector<double> mu, std::vector<double> sigma, int eigsize, std::vector<double> &feat)
+{
+    int ctr = 0;
+    double sum = 0;
+    feat.clear();
+    while(ctr<eigsize){
+        sum = 0;
+        for (std::vector<double>::size_type i = 0; i<test.size();++i){
+            sum += (eigv[ctr][i]*(test[i]-mu[i])/sigma[i]);
+        }
+        feat.push_back(sum);
+        ++ctr;
+    }
+    
+}
+
+float distance_between(Point2d n1, Point2d n2)
+{
+    return sqrt(((n1.x - n2.x)*(n1.x - n2.x)) + ((n1.y - n2.y)*(n1.y - n2.y)));
+}
+
+void setEqlim(cv::Mat &shape, int rows, int cols, cv::Rect &facereg)
+{
+    double top, left, right, bottom;
+    int n = shape.rows / 2;
+    if (shape.at<double>(0, 0) < 20.5) {
+        if (shape.at<double>(0, 0) < 0)
+            left = 0;
+        else
+            left = shape.at<double>(0, 0);
+    } else
+        left = shape.at<double>(0, 0) - 20;
+    
+    if (shape.at<double>(16, 0) + 20 > cols - 0.5) {
+        if (shape.at<double>(16, 0) > cols)
+            right = cols;
+        else
+            right = shape.at<double>(16, 0);
+    } else
+        right = shape.at<double>(16, 0) + 20;
+    
+    if (shape.at<double>(8 + n, 0) > rows - 0.5) {
+        if (shape.at<double>(8 + n, 0) > rows)
+            bottom = rows;
+        else
+            bottom = shape.at<double>(8 + n, 0);
+    } else
+        bottom = shape.at<double>(8 + n, 0) + 20;
+    
+    if (shape.at<double>(19 + n, 0) < 10.5) {
+        if (shape.at<double>(19 + n, 0) < 0)
+            top = 0;
+        else
+            top = shape.at<double>(19 + n, 0);
+    } else
+        top = shape.at<double>(19 + n, 0) - 10;
+    
+    facereg= cv::Rect(Point2d(left, top), Point2d(right, bottom));
+    
+    return;
+    
+}
+
+void vect2test (cv::Mat &vect, std::vector<double> &test)
+{
+    int i, n = vect.rows/2;
+    cv::Point2d left_eye, right_eye, nose;
+    
+    float between_eyes;
+    test.clear();
+    left_eye = cv::Point2d(vect.at<double>(36,0)/2+vect.at<double>(39,0)/2,vect.at<double>(36+n,0)/2+vect.at<double>(39+n,0)/2);
+    right_eye = cv::Point2d(vect.at<double>(42,0)/2+vect.at<double>(45,0)/2,vect.at<double>(42+n,0)/2+vect.at<double>(45+n,0)/2);
+    between_eyes = distance_between(left_eye, right_eye);
+    cv::Point2d p1, p2;
+    nose = cv::Point2d((vect.at<double>(30,0)+vect.at<double>(33,0))/2,(vect.at<double>(30+n,0)+vect.at<double>(33+n,0))/2);
+    
+    for(i = 0 ; i < 17;  i++)
+    {
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,nose)/between_eyes);
+    }
+    for(i = 17; i < 22;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,left_eye)/between_eyes);
+    }
+    for(i = 22; i < 27;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,right_eye)/between_eyes);
+    }
+    for(i = 31; i < 36;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,nose)/between_eyes);
+    }
+    for(i = 36; i < 42;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,left_eye)/between_eyes);
+    }
+    for(i = 42; i < 48;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,right_eye)/between_eyes);
+    }
+    for(i = 48; i < 66;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,nose)/between_eyes);
+    }
+    for(i = 0; i < 5;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(17+i,0), vect.at<double>(17+i+n,0));
+        p2 = Point2d(vect.at<double>(26-i,0), vect.at<double>(26-i+n,0));
+        test.push_back(distance_between(p1,p2)/between_eyes);
+    }
+    
+    
+    for(i = 22; i < 27;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,nose)/between_eyes);
+    }
+    for(i = 17; i < 22;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,nose)/between_eyes);
+    }
+    for(i = 0; i < 3;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(56+i,0), vect.at<double>(56+i+n,0));
+        p2 = Point2d(vect.at<double>(52-i,0), vect.at<double>(52-i+n,0));
+        test.push_back(distance_between(p1,p2)/between_eyes);
+    }
+    
+	   p1 = Point2d(vect.at<double>(48,0), vect.at<double>(48+n,0));
+	   p2 = Point2d(vect.at<double>(54,0), vect.at<double>(54+n,0));
+	   test.push_back(distance_between(p1,p2)/between_eyes);
+    
+	   p1 = Point2d(vect.at<double>(49,0), vect.at<double>(49+n,0));
+	   p2 = Point2d(vect.at<double>(53,0), vect.at<double>(53+n,0));
+	   test.push_back(distance_between(p1,p2)/between_eyes);
+    
+	   p1 = Point2d(vect.at<double>(59,0), vect.at<double>(59+n,0));
+	   p2 = Point2d(vect.at<double>(55,0), vect.at<double>(55+n,0));
+	   test.push_back(distance_between(p1,p2)/between_eyes);
+    
+    for(i = 0; i < 3;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(60+i,0), vect.at<double>(60+i+n,0));
+        p2 = Point2d(vect.at<double>(65-i,0), vect.at<double>(65-i+n,0));
+        test.push_back (distance_between(p1,p2)/between_eyes);
+    }
+    
+    //printf("Test (1) = %f\n", test.front());
+    return;
+    
+    
+    
+}
+
+void file2vect (const char* filename, std::vector<double> &vect)
+{
+    std::string currentLine;
+    std::ifstream infile;
+    infile.open (filename);
+    int idx = 0;
+    vect.clear();
+    if(!infile.eof())
+    {
+        getline(infile,currentLine); // Saves the line in currentLine.
+        char *cstr = new char[currentLine.length() + 1];
+        NSLog(@"%s", cstr);
+        strcpy(cstr, currentLine.c_str());
+        char *p = strtok(cstr, ","); //separate using comma delimiter
+        idx=1;
+        while (p) {
+            vect.push_back(atof(p));
+            p = strtok(NULL, ",");
+            idx++;
+        }
+    }
+    
+    infile.close();
+    
+    
+}
+
+-(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer
+{
+    
+    
+    
+    CVPixelBufferLockBaseAddress(imageBuffer,0);
+    
+    /*Get information about the image*/
+    uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    //size_t stride = CVPixelBufferGetBytesPerRow(imageBuffer);
+    NSLog(@"Frame captured: %lu x %lu", width,height);
+    
+    cv::Mat frame(height, width, CV_8UC4, (void*)baseAddress);
+    
+    // Make image the correct orientation for upwards iPad
+    cv::Mat dst;
+    cv::transpose(frame, dst);
+    cv::flip(dst, dst, 1);
+    
+    // Convert from native BGRA to RGBA
+    cvtColor(dst,frame,CV_BGRA2RGBA);
+    
+    
+    if(scale == 1)im = frame;
+    else cv::resize(frame,im,cv::Size(scale*frame.cols,scale*frame.rows));
+    cv::flip(im,im,1);
+    cv::cvtColor(im,gray,CV_BGR2GRAY);
+    
+    [self track];
+    
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
+    
+    return [imageConverter UIImageFromMat:im];
+    
+}
+
+/*
+ Supporting function to convert the measured time
+ to seconds, for display on the video camera
+ */
+static double machTimeToSecs(uint64_t time)
+{
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    return (double)time * (double)timebase.numer /
+    (double)timebase.denom / 1e9;
+}
+
 
 
 @end

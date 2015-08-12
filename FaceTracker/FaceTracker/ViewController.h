@@ -10,28 +10,30 @@
 #import <opencv2/imgproc.hpp>
 #import "trackerWrapper.h"
 
-@interface ViewController : UIViewController<CvVideoCameraDelegate>
+@interface ViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
 {
     CvVideoCamera* videoCamera;
-    uint64_t prevTime;
+    struct svm_model* svmmodel;
 }
 
-@property (nonatomic, strong) CvVideoCamera* videoCamera;
 
 @property (weak, nonatomic) IBOutlet UIImageView *videoView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (strong, nonatomic) trackerWrapper *tracker;
+@property (nonatomic, strong) AVCaptureSession *session;
+@property (nonatomic, strong) AVCaptureDevice *device;
+@property (nonatomic, strong) AVCaptureDeviceInput *input;
+@property (nonatomic, strong) AVCaptureVideoDataOutput *output;
+@property (nonatomic, strong) CIContext *ciContext;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *initialiseVideoButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *switchCameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *showTrackingButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectEmotionButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 
 - (IBAction)initialiseVideo:(id)sender;
-- (IBAction)switchCamera:(id)sender;
 - (IBAction)faceTrack:(id)sender;
 - (IBAction)selectEmotion:(id)sender;
 - (IBAction)settings:(id)sender;

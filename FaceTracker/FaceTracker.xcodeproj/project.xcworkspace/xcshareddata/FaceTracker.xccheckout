@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>708E515D-228F-48FD-B491-0562CF8C93F0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>FaceTracker</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BA9FACEC8096E74146D0A9F49AF014FCC1C577A4</key>
 		<string>https://github.com/mrhysjones/facetrackerios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>FaceTracker/FaceTracker.xcodeproj</string>
+	<string>FaceTracker/FaceTracker.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>BA9FACEC8096E74146D0A9F49AF014FCC1C577A4</key>

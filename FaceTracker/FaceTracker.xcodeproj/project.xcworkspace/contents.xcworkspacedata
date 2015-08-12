@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:vector.pca">
+   </FileRef>
+   <FileRef
       location = "self:FaceTracker.xcodeproj">
    </FileRef>
 </Workspace>

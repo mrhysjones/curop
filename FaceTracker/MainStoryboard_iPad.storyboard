@@ -7,6 +7,7 @@
         <!--View Controller-->
         <scene sceneID="4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fXn-JE-SKk"/>
@@ -26,12 +27,6 @@
                                     <barButtonItem image="camera-32.png" id="a0u-m6-MME">
                                         <connections>
                                             <action selector="initialiseVideo:" destination="2" id="zlh-5u-Udx"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e0H-OY-ncu"/>
-                                    <barButtonItem image="switch_camera-32.png" id="qOs-Zb-7pe">
-                                        <connections>
-                                            <action selector="switchCamera:" destination="2" id="bff-XZ-l3o"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ibs-rP-ASq"/>
@@ -72,12 +67,10 @@
                         <outlet property="selectEmotionButton" destination="9tc-g4-4zD" id="uWT-XH-hZe"/>
                         <outlet property="settingsButton" destination="tIk-m6-A3c" id="EQB-fF-QM5"/>
                         <outlet property="showTrackingButton" destination="xgB-GP-9fD" id="O4T-mP-w8S"/>
-                        <outlet property="switchCameraButton" destination="qOs-Zb-7pe" id="r5B-7J-CAC"/>
                         <outlet property="toolbar" destination="T32-8I-Hbj" id="3qK-Qd-pGl"/>
                         <outlet property="videoView" destination="K8a-HC-HbG" id="Eaw-wv-IXs"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
@@ -86,7 +79,6 @@
         <image name="happy-32.png" width="32" height="32"/>
         <image name="name-32.png" width="32" height="32"/>
         <image name="settings-32.png" width="32" height="32"/>
-        <image name="switch_camera-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
