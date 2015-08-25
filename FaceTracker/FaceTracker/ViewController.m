@@ -28,9 +28,7 @@
     
 }
 
-
-
-// Programmatic way of ensuring the status bar hidden
+// Programmatic way of ensuring the status bar is hidden
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
@@ -38,7 +36,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [videoCamera stop];
     [super viewDidDisappear:animated];
 }
 
@@ -58,48 +55,40 @@
     [self.tracker resetModel];
 }
 
-
+// Method that toggles classification (needs more appropriate name)
 - (IBAction)selectEmotion:(id)sender {
-    // Ideally want a means of controlling which predictions you see
+    [self.tracker classify];
 }
 
 - (IBAction)settings:(id)sender {
-    // Show FPS, white balance, exposure...
+    /*
+     To be completed - table view that will allow you to toggle 
+     which tracking points to draw, the FPS label, and which emotions 
+     to output to the screen
+     */
 }
 
-- (void)processImage:(cv::Mat&)image
-{
-    // Face tracking and emotion classification
-    [self.tracker trackWithCvMat:image];
-
-    // Add FPS to the image view
-
-}
-
-
-#pragma mark - AVFoundationCode
+// Attempts to find the front camera on the device
 - (AVCaptureDevice *) findFrontCamera
 {
     AVCaptureDevice *frontCamera = nil;
     NSArray *devices = [AVCaptureDevice devices];
     for (AVCaptureDevice *currentDevice in devices) {
-        NSLog(@"%@", currentDevice);
         if ([currentDevice hasMediaType:AVMediaTypeVideo]) {
             if ([currentDevice position] == AVCaptureDevicePositionFront) {
-                
                 frontCamera =  currentDevice;
             }
-            
         }
         
     }
     return frontCamera;
 }
 
+// Sets up the capture, and starts the running of tracking
 - (void) createAndRunNewSession
 {
     self.session = [[AVCaptureSession alloc] init];
-    self.session.sessionPreset = AVCaptureSessionPresetHigh;
+    self.session.sessionPreset = AVCaptureSessionPresetMedium;
     
     self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
@@ -115,27 +104,31 @@
     
     [self.output setSampleBufferDelegate:self queue:queue];
     
-    [self.session addInput:self.input];
-    [self.session addOutput:self.output];
+    // These checks have been put in place to stop simulator errors
+    if ([self.session canAddInput:self.input]){
+        [self.session addInput:self.input];
+    }
+    if ([self.session canAddOutput:self.output]){
+        [self.session addOutput:self.output];
+    }
+    // Triggers captureOutput below
     [self.session startRunning];
-    
-    
 }
 
+// Function that does the processing of the samples
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    
     @autoreleasepool {
-        
         CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
         
         // start tracking data and get image of tracked face
         UIImage *trackedImage = [self.tracker trackWithCVImageBufferRef:imageBuffer];
-
+        
         // Show modified image on video view
         [self.videoView performSelectorOnMainThread:@selector(setImage:) withObject:trackedImage waitUntilDone:YES];
-
     }
+        
+
 }
 
 

@@ -12,7 +12,6 @@
 
 @interface ViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
 {
-    CvVideoCamera* videoCamera;
     struct svm_model* svmmodel;
 }
 

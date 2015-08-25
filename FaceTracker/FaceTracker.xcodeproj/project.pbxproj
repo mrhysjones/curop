@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */; };
-		CA3CB52D1B78A9480056E3C9 /* emotions.train.pca.range in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB52C1B78A9480056E3C9 /* emotions.train.pca.range */; };
-		CA3CB52F1B78A9580056E3C9 /* emotions.train.pca.model in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB52E1B78A9580056E3C9 /* emotions.train.pca.model */; };
 		CA3CB5331B78B35E0056E3C9 /* imageConversion.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5101B7378230056E3C9 /* imageConversion.mm */; };
 		CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */; };
 		CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */; };
@@ -24,16 +22,17 @@
 		CA3CB53E1B78B3B50056E3C9 /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0E1B7365B7005E92C5 /* PAW.cc */; };
 		CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B101B7365B7005E92C5 /* PDM.cc */; };
 		CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B121B7365B7005E92C5 /* Tracker.cc */; };
-		CA3CB54B1B78BBC50056E3C9 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5481B78BBC50056E3C9 /* pca_archive_mu.txt */; };
-		CA3CB54C1B78BBC50056E3C9 /* pca_archive_sigma.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB5491B78BBC50056E3C9 /* pca_archive_sigma.txt */; };
-		CA3CB54D1B78BBC50056E3C9 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA3CB54A1B78BBC50056E3C9 /* pca_archive_wt.txt */; };
-		CA4919451B7A8E2D006F504C /* vector.pca in Resources */ = {isa = PBXBuildFile; fileRef = CA4919441B7A8E2D006F504C /* vector.pca */; };
-		CA4919461B7A913B006F504C /* merge_files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5281B78A8470056E3C9 /* merge_files.cpp */; };
 		CA4E2B211B7365FD005E92C5 /* face.con in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1D1B7365FD005E92C5 /* face.con */; };
 		CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1E1B7365FD005E92C5 /* face.tracker */; };
 		CA4E2B231B7365FD005E92C5 /* face.tri in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1F1B7365FD005E92C5 /* face.tri */; };
 		CA4E2B241B7365FD005E92C5 /* face2.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B201B7365FD005E92C5 /* face2.tracker */; };
+		CA64DC611B823A8100C83D97 /* emotions.train.pca.model in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC581B823A8100C83D97 /* emotions.train.pca.model */; };
+		CA64DC621B823A8100C83D97 /* emotions.train.pca.range in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC591B823A8100C83D97 /* emotions.train.pca.range */; };
+		CA64DC651B823A8100C83D97 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */; };
+		CA64DC661B823A8100C83D97 /* pca_archive_sigma.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5D1B823A8100C83D97 /* pca_archive_sigma.txt */; };
+		CA64DC671B823A8100C83D97 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5E1B823A8100C83D97 /* pca_archive_wt.txt */; };
 		CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */; };
+		CACE74F41B84970300E76924 /* merge_files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CACE74F21B84970300E76924 /* merge_files.cpp */; };
 		CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */; };
 		CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */; };
 		CAD11FAF1B713977003ED990 /* camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAE1B713977003ED990 /* camera-32.png */; };
@@ -62,14 +61,6 @@
 		CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = ../MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		CA3CB5241B78A54B0056E3C9 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svm.h; sourceTree = "<group>"; };
 		CA3CB5261B78A72B0056E3C9 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cpp; sourceTree = "<group>"; };
-		CA3CB5281B78A8470056E3C9 /* merge_files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = merge_files.cpp; path = FaceTracker/merge_files.cpp; sourceTree = "<group>"; };
-		CA3CB5291B78A8470056E3C9 /* merge_files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = merge_files.h; path = FaceTracker/merge_files.h; sourceTree = "<group>"; };
-		CA3CB52C1B78A9480056E3C9 /* emotions.train.pca.range */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.range; sourceTree = "<group>"; };
-		CA3CB52E1B78A9580056E3C9 /* emotions.train.pca.model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.model; sourceTree = "<group>"; };
-		CA3CB5481B78BBC50056E3C9 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pca_archive_mu.txt; path = FaceTracker/pca_archive_mu.txt; sourceTree = "<group>"; };
-		CA3CB5491B78BBC50056E3C9 /* pca_archive_sigma.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pca_archive_sigma.txt; path = FaceTracker/pca_archive_sigma.txt; sourceTree = "<group>"; };
-		CA3CB54A1B78BBC50056E3C9 /* pca_archive_wt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pca_archive_wt.txt; path = FaceTracker/pca_archive_wt.txt; sourceTree = "<group>"; };
-		CA4919441B7A8E2D006F504C /* vector.pca */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vector.pca; path = FaceTracker.xcodeproj/vector.pca; sourceTree = "<group>"; };
 		CA4E2B041B7365B7005E92C5 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLM.cc; sourceTree = "<group>"; };
 		CA4E2B051B7365B7005E92C5 /* CLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLM.h; sourceTree = "<group>"; };
 		CA4E2B061B7365B7005E92C5 /* FCheck.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FCheck.cc; sourceTree = "<group>"; };
@@ -90,6 +81,11 @@
 		CA4E2B1E1B7365FD005E92C5 /* face.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tracker; sourceTree = "<group>"; };
 		CA4E2B1F1B7365FD005E92C5 /* face.tri */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tri; sourceTree = "<group>"; };
 		CA4E2B201B7365FD005E92C5 /* face2.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face2.tracker; sourceTree = "<group>"; };
+		CA64DC581B823A8100C83D97 /* emotions.train.pca.model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.model; sourceTree = "<group>"; };
+		CA64DC591B823A8100C83D97 /* emotions.train.pca.range */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.range; sourceTree = "<group>"; };
+		CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_mu.txt; sourceTree = "<group>"; };
+		CA64DC5D1B823A8100C83D97 /* pca_archive_sigma.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_sigma.txt; sourceTree = "<group>"; };
+		CA64DC5E1B823A8100C83D97 /* pca_archive_wt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_wt.txt; sourceTree = "<group>"; };
 		CA8E2AC91B70FDB900A1EC4F /* FaceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8E2ACD1B70FDB900A1EC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA8E2ACE1B70FDB900A1EC4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -99,6 +95,8 @@
 		CA8E2AD41B70FDB900A1EC4F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA8E2ADC1B70FDB900A1EC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CACE74F21B84970300E76924 /* merge_files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = merge_files.cpp; path = FaceTracker/merge_files.cpp; sourceTree = "<group>"; };
+		CACE74F31B84970300E76924 /* merge_files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = merge_files.h; path = FaceTracker/merge_files.h; sourceTree = "<group>"; };
 		CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera-32.png"; sourceTree = "<group>"; };
 		CAD11FAE1B713977003ED990 /* camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-32.png"; sourceTree = "<group>"; };
@@ -142,26 +140,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA3CB51C1B78A4F70056E3C9 /* LibSVM */ = {
+		CA3CB51C1B78A4F70056E3C9 /* SVM */ = {
 			isa = PBXGroup;
 			children = (
-				CA3CB5281B78A8470056E3C9 /* merge_files.cpp */,
-				CA3CB5291B78A8470056E3C9 /* merge_files.h */,
+				CA3CB52B1B78A9270056E3C9 /* Classifier */,
+				CACE74F21B84970300E76924 /* merge_files.cpp */,
+				CACE74F31B84970300E76924 /* merge_files.h */,
 				CA3CB5261B78A72B0056E3C9 /* svm.cpp */,
 				CA3CB5241B78A54B0056E3C9 /* svm.h */,
 			);
-			name = LibSVM;
+			name = SVM;
 			sourceTree = "<group>";
 		};
 		CA3CB52B1B78A9270056E3C9 /* Classifier */ = {
 			isa = PBXGroup;
 			children = (
-				CA4919441B7A8E2D006F504C /* vector.pca */,
-				CA3CB5481B78BBC50056E3C9 /* pca_archive_mu.txt */,
-				CA3CB5491B78BBC50056E3C9 /* pca_archive_sigma.txt */,
-				CA3CB54A1B78BBC50056E3C9 /* pca_archive_wt.txt */,
-				CA3CB52E1B78A9580056E3C9 /* emotions.train.pca.model */,
-				CA3CB52C1B78A9480056E3C9 /* emotions.train.pca.range */,
+				CA64DC581B823A8100C83D97 /* emotions.train.pca.model */,
+				CA64DC591B823A8100C83D97 /* emotions.train.pca.range */,
+				CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */,
+				CA64DC5D1B823A8100C83D97 /* pca_archive_sigma.txt */,
+				CA64DC5E1B823A8100C83D97 /* pca_archive_wt.txt */,
 			);
 			name = Classifier;
 			sourceTree = "<group>";
@@ -190,7 +188,7 @@
 			path = FaceTrackerLibrary;
 			sourceTree = "<group>";
 		};
-		CA4E2B1C1B7365FD005E92C5 /* FaceTracker Model */ = {
+		CA4E2B1C1B7365FD005E92C5 /* Tracking Model Files */ = {
 			isa = PBXGroup;
 			children = (
 				CA4E2B1D1B7365FD005E92C5 /* face.con */,
@@ -198,18 +196,17 @@
 				CA4E2B1F1B7365FD005E92C5 /* face.tri */,
 				CA4E2B201B7365FD005E92C5 /* face2.tracker */,
 			);
-			name = "FaceTracker Model";
+			name = "Tracking Model Files";
 			path = Model;
 			sourceTree = SOURCE_ROOT;
 		};
 		CA8E2AC01B70FDB900A1EC4F = {
 			isa = PBXGroup;
 			children = (
-				CA3CB52B1B78A9270056E3C9 /* Classifier */,
-				CA3CB51C1B78A4F70056E3C9 /* LibSVM */,
-				CA4E2B1C1B7365FD005E92C5 /* FaceTracker Model */,
+				CA3CB51C1B78A4F70056E3C9 /* SVM */,
+				CA4E2B1C1B7365FD005E92C5 /* Tracking Model Files */,
 				CA4E2B031B7365B7005E92C5 /* FaceTracker Library */,
-				CA8E2ACB1B70FDB900A1EC4F /* Face Tracking App */,
+				CA8E2ACB1B70FDB900A1EC4F /* App */,
 				CA8E2ACA1B70FDB900A1EC4F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -222,7 +219,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CA8E2ACB1B70FDB900A1EC4F /* Face Tracking App */ = {
+		CA8E2ACB1B70FDB900A1EC4F /* App */ = {
 			isa = PBXGroup;
 			children = (
 				CA3CB50F1B7378230056E3C9 /* imageConversion.h */,
@@ -241,7 +238,7 @@
 				CA8E2ADB1B70FDB900A1EC4F /* LaunchScreen.xib */,
 				CA8E2ACC1B70FDB900A1EC4F /* Supporting Files */,
 			);
-			name = "Face Tracking App";
+			name = App;
 			path = FaceTracker;
 			sourceTree = "<group>";
 		};
@@ -312,7 +309,7 @@
 		CA8E2AC11B70FDB900A1EC4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Matthew Jones";
 				TargetAttributes = {
 					CA8E2AC81B70FDB900A1EC4F = {
@@ -344,24 +341,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3CB52F1B78A9580056E3C9 /* emotions.train.pca.model in Resources */,
+				CA64DC611B823A8100C83D97 /* emotions.train.pca.model in Resources */,
 				CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */,
 				CA4E2B231B7365FD005E92C5 /* face.tri in Resources */,
-				CA4919451B7A8E2D006F504C /* vector.pca in Resources */,
+				CA64DC671B823A8100C83D97 /* pca_archive_wt.txt in Resources */,
 				CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */,
-				CA3CB54B1B78BBC50056E3C9 /* pca_archive_mu.txt in Resources */,
+				CA64DC651B823A8100C83D97 /* pca_archive_mu.txt in Resources */,
 				CAD11FB51B716C84003ED990 /* name-32.png in Resources */,
 				CAD11FAF1B713977003ED990 /* camera-32.png in Resources */,
 				CAD11FB41B716C84003ED990 /* happy-32.png in Resources */,
+				CA64DC661B823A8100C83D97 /* pca_archive_sigma.txt in Resources */,
 				CA4E2B211B7365FD005E92C5 /* face.con in Resources */,
 				CA4E2B241B7365FD005E92C5 /* face2.tracker in Resources */,
 				CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */,
 				CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */,
 				CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */,
-				CA3CB54C1B78BBC50056E3C9 /* pca_archive_sigma.txt in Resources */,
 				CAD11FB71B716D99003ED990 /* settings-32.png in Resources */,
-				CA3CB52D1B78A9480056E3C9 /* emotions.train.pca.range in Resources */,
-				CA3CB54D1B78BBC50056E3C9 /* pca_archive_wt.txt in Resources */,
+				CA64DC621B823A8100C83D97 /* emotions.train.pca.range in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,8 +368,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA4919461B7A913B006F504C /* merge_files.cpp in Sources */,
 				CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */,
+				CACE74F41B84970300E76924 /* merge_files.cpp in Sources */,
 				CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */,
 				CA3CB53A1B78B3B50056E3C9 /* FCheck.cc in Sources */,
 				CA3CB53B1B78B3B50056E3C9 /* FDet.cc in Sources */,
@@ -424,7 +420,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -468,6 +466,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -515,6 +514,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTrackerLibrary",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrhysjones.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -549,6 +549,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTrackerLibrary",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrhysjones.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

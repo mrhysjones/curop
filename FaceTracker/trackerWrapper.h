@@ -18,6 +18,7 @@
 -(void)initialiseModel;
 -(void)initialiseValues;
 -(void)resetModel;
+-(void)classify;
 -(UIImage *)trackWithImage:(UIImage *)im;
 -(UIImage *)trackWithCvMat:(cv::Mat)im;
 -(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer;

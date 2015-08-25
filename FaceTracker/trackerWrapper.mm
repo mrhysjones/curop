@@ -3,7 +3,7 @@
 //  iOSFaceTracker 2
 //
 //  Created by Tom Hartley on 01/12/2012.
-//  Modified by Matthew Jones on 10/08/2015
+//  Last Modified by Matthew Jones on 25/08/2015
 //  Copyright (c) 2012 Tom Hartley. All rights reserved.
 //
 
@@ -17,8 +17,6 @@ using namespace cv;
 @implementation trackerWrapper {
     int switchVal;
     
-    struct svm_model* svmmodel;
-    
     FACETRACKER::Tracker model;
     cv::Mat tri;
     cv::Mat con;
@@ -26,7 +24,6 @@ using namespace cv;
     std::vector<int> wSize1;
     std::vector<int> wSize2;
     std::vector<int> wSize;
-
     
     bool fcheck;
     double scale;
@@ -44,13 +41,16 @@ using namespace cv;
     
     imageConversion *imageConverter;
     
+    svm_model *svmmodel;
+    bool classify;
+    
     int eigsize;
     std::vector<double> test, feat, mu, sigma, eigv[18];
-    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath;
+    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath, *fpsString;
     
 }
 
-
+// Loads in the face tracker and starts the image converter used on samples
 -(void)initialiseModel
 {
     
@@ -65,7 +65,6 @@ using namespace cv;
     const char *conPathString = [conPath cStringUsingEncoding:NSASCIIStringEncoding];
     
     
-    
     model.Load(modelPathString);
     tri=FACETRACKER::IO::LoadTri(triPathString);
     con=FACETRACKER::IO::LoadCon(conPathString);
@@ -74,7 +73,7 @@ using namespace cv;
     
 }
 
-
+// Initialise values relating to the tracker and also the SVM classification
 -(void)initialiseValues
 {
     prevTime = mach_absolute_time();
@@ -95,32 +94,38 @@ using namespace cv;
     fTol=0.01;
     failed = true;
     
-//    trainPath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"model"];
-//    
-//    trainRangePath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"range"];
-//    
-//    wtPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_wt" ofType:@"txt"];
-//    const char *wtPathString = [wtPath cStringUsingEncoding:NSASCIIStringEncoding];
-//    
-//    muPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_mu" ofType:@"txt"];
-//    const char *muPathString = [muPath cStringUsingEncoding:NSASCIIStringEncoding];
-//    
-//    sigmaPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_sigma" ofType:@"txt"];
-//    const char *sigmaPathString = [sigmaPath cStringUsingEncoding:NSASCIIStringEncoding];
-//    
-//    vectorPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:@"pca"];
-//    
-//    const char *trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
-//
-//    eigsize = 18;
-//    
-//    file2eig(wtPathString,eigv, eigsize);
-//    file2vect(muPathString, mu);
-//    file2vect(sigmaPathString, sigma);
-//    svmmodel = svm_load_model(trainPathString);
+    trainPath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"model"];
+    const char* trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    trainRangePath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"range"];
+    
+    wtPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_wt" ofType:@"txt"];
+    const char *wtPathString = [wtPath cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    muPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_mu" ofType:@"txt"];
+    const char *muPathString = [muPath cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    sigmaPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_sigma" ofType:@"txt"];
+    const char *sigmaPathString = [sigmaPath cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    vectorPath = [[self applicationDocumentsDirectory].path
+                                   stringByAppendingPathComponent:@"vector.pca"];
+    
+    
+    
+    eigsize = 18;
+    
+    svmmodel = svm_load_model(trainPathString);
+    file2eig(wtPathString,eigv, eigsize);
+    file2vect(muPathString, mu);
+    file2vect(sigmaPathString, sigma);
+    
+    classify = false;
+
 
 }
 
+// Function that will draw on the geometry of tracked face
 -(void) draw
 {
     cv::Mat shape = model._shape;
@@ -175,6 +180,7 @@ using namespace cv;
     
 }
 
+// Function that deals with face tracking and classification (conditional)
 -(void)track
 {
    
@@ -184,6 +190,7 @@ using namespace cv;
         wSize = wSize1;
     }
     
+    // If successful tracking - draw the points and possibly classify
     if(model.Track(gray,wSize,fpd,nIter,clamp,fTol,fcheck) == 0) {
         
         [self draw];
@@ -191,39 +198,64 @@ using namespace cv;
         const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
         const char *vectorPathString = [vectorPath cStringUsingEncoding:NSASCIIStringEncoding];
 
-//        vect2test(model._shape, test);
-//        pca_project(test, eigv, mu, sigma, eigsize, feat);
-//        featfiler(feat, vectorPath);
-//        svmrun(svmmodel, vectorPathString, trainRangePathString);
-        
-        
+        // Only executed if classification is enabled
+        if (classify){
+            // Convert the tracking data to the appropriate distance measures
+            vect2test(model._shape, test);
+            
+            // Perform a PCA projection to produce features
+            pca_project(test, eigv, mu, sigma, eigsize, feat);
+            
+            // Write these features to a 'vector.pca' file in the app documents dir
+            featfiler(feat, vectorPath);
+            
+            // Run the SVM model against these features - scale, predict
+            svmrun(svmmodel, vectorPathString, trainRangePathString);
+            
+        }
+    
+        // If unsuccessful tracking - reset the model
     }else{
         
         [self resetModel];
         failed = true;
         
     }
+    
+    // Keep track of system time and use to add an FPS value to the screen
     uint64_t currTime = mach_absolute_time();
     double timeInSeconds = machTimeToSecs(currTime - prevTime);
     prevTime = currTime;
     double fps = 1.0 / timeInSeconds;
-    NSString* fpsString =
+    fpsString =
     [NSString stringWithFormat:@"FPS = %3.2f",
      fps];
     cv::putText(im, [fpsString UTF8String],
                 cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX,
                 0.8, cv::Scalar::all(0));
     
-    
-    
-    
 }
 
+
+// Reset the tracking model on button press
 -(void)resetModel
 {
     model.FrameReset();
 }
 
+// Toggle emotion classification on button press
+-(void)classify
+{
+    classify ^= true;
+    if (classify){
+        printf("Classification enabled \n");
+    }
+    else{
+        printf("Classification disabled \n");
+    }
+}
+
+// Tracks with UIImage - not used
 -(UIImage *)trackWithImage:(UIImage *)image
 {
     static cv::Mat frame;
@@ -236,10 +268,12 @@ using namespace cv;
     
     [self track];
     
+    
     return [imageConverter UIImageFromMat:im];
     
 }
 
+// Tracks with OpenCV matrix - not used
 -(UIImage *)trackWithCvMat:(cv::Mat)frame
 {
     
@@ -254,7 +288,7 @@ using namespace cv;
     
 }
 
-
+// Gets the tracking model rotation
 - (NSMutableArray *)getRotation
 {
     cv::Mat pose = model._clm._pglobl;
@@ -272,13 +306,14 @@ using namespace cv;
     
 }
 
+// Get the tracking model scale
 -(double)getScale {
 	CvMat pose = model._clm._pglobl;
     //NSLog(@"%f",cvGetReal2D(&pose,0,0));
 	return cvGetReal2D(&pose,0,0) ;
 }
 
-
+// Get a 3D mesh based on the tracking model
 -(NSArray *) get3dMesh{
     static cv::Mat mesh;
     
@@ -326,6 +361,7 @@ using namespace cv;
     return @[x,y,z];
 }
 
+// Write a vector of features to a specific file
 void featfiler (std::vector<double> &feat, NSString * filename)
 {
     NSString *fStr = [[NSString alloc]init];
@@ -337,6 +373,7 @@ void featfiler (std::vector<double> &feat, NSString * filename)
                  encoding:NSASCIIStringEncoding error:NULL];
 }
 
+// Function to take the eigenvalues from PCA into an eigen value array
 void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
 {
     std::string currentLine;
@@ -366,6 +403,7 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     return;
 }
 
+// Perform PCA projection based on PCA data from training and distance measures acquired from tracking data
 void pca_project (std::vector<double> &test, std::vector<double> eigv[],
                   std::vector<double> mu, std::vector<double> sigma, int eigsize, std::vector<double> &feat)
 {
@@ -567,11 +605,10 @@ void file2vect (const char* filename, std::vector<double> &vect)
     
 }
 
+// Tracks with CVImageBufferRef - currently used
 -(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer
 {
-    
-    
-    
+
     CVPixelBufferLockBaseAddress(imageBuffer,0);
     
     /*Get information about the image*/
@@ -579,7 +616,7 @@ void file2vect (const char* filename, std::vector<double> &vect)
     size_t width = CVPixelBufferGetWidth(imageBuffer);
     size_t height = CVPixelBufferGetHeight(imageBuffer);
     //size_t stride = CVPixelBufferGetBytesPerRow(imageBuffer);
-    NSLog(@"Frame captured: %lu x %lu", width,height);
+    //NSLog(@"Frame captured: %lu x %lu", width,height);
     
     cv::Mat frame(height, width, CV_8UC4, (void*)baseAddress);
     
@@ -606,16 +643,19 @@ void file2vect (const char* filename, std::vector<double> &vect)
     
 }
 
-/*
- Supporting function to convert the measured time
- to seconds, for display on the video camera
- */
+// Convert measured time to seconds for screen display (FPS) 
 static double machTimeToSecs(uint64_t time)
 {
     mach_timebase_info_data_t timebase;
     mach_timebase_info(&timebase);
     return (double)time * (double)timebase.numer /
     (double)timebase.denom / 1e9;
+}
+
+// Returns the location of the applications document directory where we can write to
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                   inDomains:NSUserDomainMask] lastObject];
 }
 
 
