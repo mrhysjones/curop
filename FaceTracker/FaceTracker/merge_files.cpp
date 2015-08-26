@@ -9,7 +9,7 @@
  * 
  */
 
-struct svm_node *x = (struct svm_node *) malloc(512*sizeof(struct svm_node));
+struct svm_node *x = (struct svm_node *) malloc(20*sizeof(struct svm_node));
 
 int x_i = 0;
 
@@ -34,7 +34,7 @@ long int new_num_nonzeros = 0;
 int svmrun(svm_model* svmmodel, const char* vectorPath, const char* trainRangePath)
 {
     // Structure to hold the indexes and values of the scaled test PCA data
-    x = (struct svm_node *) malloc(512*sizeof(struct svm_node));
+    x = (struct svm_node *) malloc(20*sizeof(struct svm_node));
     x_i=0;
     
     int max_index;
@@ -206,7 +206,7 @@ int svmrun(svm_model* svmmodel, const char* vectorPath, const char* trainRangePa
         for(i=next_index;i<=max_index;i++)
             output(i,0);
         
-        printf("\n");
+        //printf("\n");
     }
     rewind(fp);
     
@@ -254,7 +254,7 @@ void output_target(double value)
         else value = y_lower + (y_upper-y_lower) *
             (value - y_min)/(y_max-y_min);
     }
-    printf("%g ",value);
+    //printf("%g ",value);
 }
 
 // Function that adds index-value to svm_node X
@@ -275,12 +275,12 @@ void output(int index, double value)
         (feature_max[index]-feature_min[index]);
     
     
-    if(value != 0)
+    if(value != 0 && x_i < 18)
     {
-        printf("\n%d:%g ", index, value);
+        //printf("\n%d:%g ", index, value);
         x[x_i].index = index;
         x[x_i].value = value;
-        printf("\n%d:%g ", x_i, value);
+        //printf("\n%d:%g ", x_i, value);
         ++x_i;
         
         new_num_nonzeros++;
@@ -314,9 +314,9 @@ void predict(svm_model* svmmodel, struct svm_node *x)
     predict_label = svm_predict_probability(svmmodel,x,prob_estimates);
     printf("%g\n",predict_label);
     for(j = 0; j < 18; j++) printf("%d:%g ", j+1, x[j].value);
-    printf("\n");
+    //printf("\n");
     for(j = 0; j < nr_class; j++) printf("%d:%g \n", j+1, 100*prob_estimates[j]);
-    printf("\n");
+    //printf("\n");
     
     free(prob_estimates);
     return;

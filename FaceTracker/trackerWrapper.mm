@@ -643,7 +643,7 @@ void file2vect (const char* filename, std::vector<double> &vect)
     
 }
 
-// Convert measured time to seconds for screen display (FPS) 
+// Convert measured time to seconds for screen display (FPS)
 static double machTimeToSecs(uint64_t time)
 {
     mach_timebase_info_data_t timebase;
