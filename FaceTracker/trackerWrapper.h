@@ -10,6 +10,7 @@
 #import <opencv2/opencv.hpp>
 #import "Tracker.h"
 #import "imageConversion.h"
+#import "svmWrapper.h"
 #import <AVFoundation/AVFoundation.h>
 
 

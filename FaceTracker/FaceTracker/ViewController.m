@@ -26,6 +26,9 @@
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
     
+    // SVM tracker utilisation
+    self.svm = [[svmWrapper alloc] init];
+    
 }
 
 // Programmatic way of ensuring the status bar is hidden

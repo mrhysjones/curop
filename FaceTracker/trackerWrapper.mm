@@ -8,7 +8,6 @@
 //
 
 #import "trackerWrapper.h"
-#import "merge_files.h"
 #import <mach/mach_time.h>
 
 using namespace cv;
@@ -40,13 +39,13 @@ using namespace cv;
     bool failed;
     
     imageConversion *imageConverter;
-    
-    svm_model *svmmodel;
+    svmWrapper* svm;
+
     bool classify;
     
     int eigsize;
     std::vector<double> test, feat, mu, sigma, eigv[18];
-    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath, *fpsString;
+    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath, *fpsString, *vectorScalePath, *predictPath;
     
 }
 
@@ -58,8 +57,6 @@ using namespace cv;
     NSString *triPath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"tri"];
     NSString *conPath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"con"];
     
-    
-    
     const char *modelPathString = [modelPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *triPathString = [triPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *conPathString = [conPath cStringUsingEncoding:NSASCIIStringEncoding];
@@ -70,6 +67,7 @@ using namespace cv;
     con=FACETRACKER::IO::LoadCon(conPathString);
     
     imageConverter = [[imageConversion alloc] init];
+    svm = [[svmWrapper alloc] init];
     
 }
 
@@ -111,11 +109,15 @@ using namespace cv;
     vectorPath = [[self applicationDocumentsDirectory].path
                                    stringByAppendingPathComponent:@"vector.pca"];
     
+    vectorScalePath = [[self applicationDocumentsDirectory].path
+                       stringByAppendingPathComponent:@"vector.pca.scale"];
+    
+    predictPath = [[self applicationDocumentsDirectory].path
+                   stringByAppendingPathComponent:@"vector.pca.predict"];
     
     
     eigsize = 18;
     
-    svmmodel = svm_load_model(trainPathString);
     file2eig(wtPathString,eigv, eigsize);
     file2vect(muPathString, mu);
     file2vect(sigmaPathString, sigma);
@@ -124,6 +126,21 @@ using namespace cv;
 
 
 }
+
+-(void) outputEmotion:(NSString*) path
+{
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    NSLog(@"%@", content);
+}
+
+
+
+
+
+
+
 
 // Function that will draw on the geometry of tracked face
 -(void) draw
@@ -183,7 +200,15 @@ using namespace cv;
 // Function that deals with face tracking and classification (conditional)
 -(void)track
 {
-   
+    const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    const char *vectorPathString = [vectorPath cStringUsingEncoding:NSASCIIStringEncoding];
+//    printf("%s \n", vectorPathString);
+//    NSLog(@"%@", vectorPath);
+//    
+    const char *vectorScalePathString = [vectorScalePath cStringUsingEncoding:NSASCIIStringEncoding];
+    
     if(failed) {
         wSize = wSize2;
     } else {
@@ -195,8 +220,6 @@ using namespace cv;
         
         [self draw];
         failed = false;
-        const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
-        const char *vectorPathString = [vectorPath cStringUsingEncoding:NSASCIIStringEncoding];
 
         // Only executed if classification is enabled
         if (classify){
@@ -208,10 +231,17 @@ using namespace cv;
             
             // Write these features to a 'vector.pca' file in the app documents dir
             featfiler(feat, vectorPath);
+                        
+            // Scales 'vector.pca' and produces a new file - 'vector.pca.scale'
+            [svm scaleData:vectorPathString rangeFile:trainRangePathString];
             
-            // Run the SVM model against these features - scale, predict
-            svmrun(svmmodel, vectorPathString, trainRangePathString);
+            // SVM prediction based on 'vector.pca.scale' to produce 'vector.pca.predict'
+            [svm predictData:vectorScalePathString modelFile:trainPathString];
             
+            // Output 'vector.pca.predict' values to the screen
+            [self outputEmotion:vectorScalePath];
+            [self outputEmotion:predictPath];
+
         }
     
         // If unsuccessful tracking - reset the model
@@ -235,7 +265,6 @@ using namespace cv;
                 0.8, cv::Scalar::all(0));
     
 }
-
 
 // Reset the tracking model on button press
 -(void)resetModel
@@ -371,6 +400,7 @@ void featfiler (std::vector<double> &feat, NSString * filename)
     [fStr writeToFile:filename
            atomically:YES
                  encoding:NSASCIIStringEncoding error:NULL];
+    
 }
 
 // Function to take the eigenvalues from PCA into an eigen value array

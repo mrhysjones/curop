@@ -2592,7 +2592,7 @@ double svm_predict(const svm_model *model, const svm_node *x)
 double svm_predict_probability(
 	const svm_model *model, const svm_node *x, double *prob_estimates)
 {
-	if ((model->param.svm_type == C_SVC || model->param.svm_type == NU_SVC) &&
+   	if ((model->param.svm_type == C_SVC || model->param.svm_type == NU_SVC) &&
 	    model->probA!=NULL && model->probB!=NULL)
 	{
 		int i;

@@ -9,6 +9,7 @@
 #import <opencv2/videoio/cap_ios.h>
 #import <opencv2/imgproc.hpp>
 #import "trackerWrapper.h"
+#import "svmWrapper.h"
 
 @interface ViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
 {
@@ -20,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (strong, nonatomic) trackerWrapper *tracker;
+@property (strong, nonatomic) svmWrapper *svm;
+
 @property (nonatomic, strong) AVCaptureSession *session;
 @property (nonatomic, strong) AVCaptureDevice *device;
 @property (nonatomic, strong) AVCaptureDeviceInput *input;
