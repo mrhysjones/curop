@@ -18,6 +18,5 @@
 
 -(int)scaleData:(const char*) vectorFile rangeFile: (const char*) rangeFile;
 -(int)predictData:(const char*) scaleFile modelFile: (const char*) modelFile;
--(void)predict:(FILE *) input; 
 
 @end

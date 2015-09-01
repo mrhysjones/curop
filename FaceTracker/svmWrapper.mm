@@ -47,6 +47,9 @@ static int (*info)(const char *fmt,...) = &printf;
 int max_line_len = 1024;
 char* ln = NULL;
 
+/*************************************************************************/
+// Scaling
+
 -(int)scaleData:(const char*) vectorFile rangeFile: (const char*) rangeFile{
     
     int i, index;
@@ -200,8 +203,14 @@ char* ln = NULL;
     
     return 0;
 }
+/*************************************************************************/
+// Prediction functions
 
 
+/*
+ Corresponds to 'main' function in svm-predict
+ Sets up the input file, and SVM model and then passes this to a predict function
+ */
 -(int)predictData:(const char *)scaleFile modelFile:(const char *)modelFile{
     FILE* scaledVals = NULL;
     predict_probability = 1;
@@ -233,11 +242,19 @@ char* ln = NULL;
     return 0;
 }
 
+/*
+ Modified version of the 'predict' function within svm-predict
+ Only provide the input file - the predictions are written to a file
+ */
 -(void)predict:(FILE *) input
 {
+    // Location in apps document directory to save predictions
     NSString *predictLocation = [NSString stringWithFormat:@"%@/vector.pca.predict",
                                  documentsDirectory];
+    
+    // String that is built up to save to above location
     NSString *predictString = @"";
+    
     int correct = 0;
     int total = 0;
     double error = 0;
@@ -256,6 +273,8 @@ char* ln = NULL;
             info("Prob. model for test data: target value = predicted value + z,\nz: Laplace distribution e^(-|z|/sigma)/(2sigma),sigma=%g\n",svm_get_svr_probability(model));
         else
         {
+            // Gets the labels from the SVM model and appends to predictString
+            
             int *labels=(int *) malloc(nr_class*sizeof(int));
             svm_get_labels(model,labels);
             prob_estimates = (double *) malloc(nr_class*sizeof(double));
@@ -318,6 +337,8 @@ char* ln = NULL;
         
         if (predict_probability && (svm_type==C_SVC || svm_type==NU_SVC))
         {
+            // Computes the predicted class and the confidence values and appends to predictString
+            
             predict_label = svm_predict_probability(model,x,prob_estimates);
             
             NSString* label = [NSString stringWithFormat:@"%g", predict_label];
@@ -348,7 +369,7 @@ char* ln = NULL;
         sumpt += predict_label*target_label;
         ++total;
     }
-    
+
     if(predict_probability)
         free(prob_estimates);
     
@@ -359,7 +380,8 @@ char* ln = NULL;
     
 }
 
-
+/*************************************************************************/
+// Supporting functions
 
 void output_target(double value)
 {
@@ -375,6 +397,7 @@ void output_target(double value)
     printf("%g ",value);
 }
 
+// Produces a scaled value from a value
 double output(int index, double value)
 {
     /* skip single-valued attribute */
@@ -394,6 +417,7 @@ double output(int index, double value)
     
 }
 
+// Reads the vector and range files for scaling
 char* readScaleLine(FILE *input){
     int len;
     
@@ -411,6 +435,7 @@ char* readScaleLine(FILE *input){
     return l;
 }
 
+// Reads the scaled values for predictions
 char* readPredictLine(FILE *input){
     int len;
     
@@ -428,8 +453,7 @@ char* readPredictLine(FILE *input){
     return ln;
 }
 
-
-
+// Cleans up if scaling doesn't complete for a given reason
 int clean_up(FILE *fp_restore, FILE *fp, const char* msg)
 {
     fprintf(stderr,	"%s", msg);
@@ -442,6 +466,7 @@ int clean_up(FILE *fp_restore, FILE *fp, const char* msg)
     return -1;
 }
 
+// Function called if predict finds the scaled values in wrong format
 void exit_input_error(int line_num)
 {
     fprintf(stderr,"Wrong input format at line %d\n", line_num);
@@ -449,4 +474,5 @@ void exit_input_error(int line_num)
 }
 
 @end;
+
 

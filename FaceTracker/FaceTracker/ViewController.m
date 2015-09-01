@@ -26,7 +26,7 @@
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
     
-    // SVM tracker utilisation
+    // SVM tracker initialisation
     self.svm = [[svmWrapper alloc] init];
     
 }
@@ -53,13 +53,13 @@
     [self createAndRunNewSession];
 }
 
-// Method that resets the tracker if it's not picking up face correctly
+// Resets the face tracker on button press if it's not picking up face correctly
 - (IBAction)faceTrack:(id)sender {
     [self.tracker resetModel];
 }
 
-// Method that toggles classification (needs more appropriate name)
-- (IBAction)selectEmotion:(id)sender {
+// Toggle emotion classification through button press
+- (IBAction)toggleClassify:(id)sender {
     [self.tracker classify];
 }
 

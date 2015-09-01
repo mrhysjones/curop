@@ -3,7 +3,7 @@
 //  iOSFaceTracker 2
 //
 //  Created by Tom Hartley on 01/12/2012.
-//  Last Modified by Matthew Jones on 25/08/2015
+//  Last Modified by Matthew Jones on 01/09/2015
 //  Copyright (c) 2012 Tom Hartley. All rights reserved.
 //
 
@@ -170,15 +170,7 @@ using namespace cv;
     
 
 }
-
-
-
-
-
-
-
-
-// Function that will draw on the geometry of tracked face
+// Draw geometry of face on the screen
 -(void) draw
 {
     cv::Mat shape = model._shape;
@@ -233,16 +225,14 @@ using namespace cv;
     
 }
 
-// Function that deals with face tracking and classification (conditional)
+// Face tracking and classification (conditional on classify variable)
 -(void)track
 {
     const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
     
     const char *vectorPathString = [vectorPath cStringUsingEncoding:NSASCIIStringEncoding];
-//    printf("%s \n", vectorPathString);
-//    NSLog(@"%@", vectorPath);
-//    
+
     const char *vectorScalePathString = [vectorScalePath cStringUsingEncoding:NSASCIIStringEncoding];
     
     if(failed) {
@@ -265,21 +255,21 @@ using namespace cv;
             // Perform a PCA projection to produce features
             pca_project(test, eigv, mu, sigma, eigsize, feat);
             
-            // Write these features to a 'vector.pca' file in the app documents dir
+            // Write principle features to a 'vector.pca' file
             featfiler(feat, vectorPath);
                         
-            // Scales 'vector.pca' and produces a new file - 'vector.pca.scale'
+            // Scale that data
             [svm scaleData:vectorPathString rangeFile:trainRangePathString];
             
-            // SVM prediction based on 'vector.pca.scale' to produce 'vector.pca.predict'
+            // SVM prediction based on scaled data
             [svm predictData:vectorScalePathString modelFile:trainPathString];
             
-            // Output 'vector.pca.predict' values to the screen
+            // Output prediction values to the screen
             [self outputEmotion];
 
         }
     
-        // If unsuccessful tracking - reset the model
+    // If unsuccessful tracking - reset the model
     }else{
         
         [self resetModel];
@@ -287,7 +277,12 @@ using namespace cv;
         
     }
     
-    // Keep track of system time and use to add an FPS value to the screen
+    [self outputFPS];
+}
+
+
+// Keep track of system time to add an FPS value to the screen
+-(void)outputFPS{
     uint64_t currTime = mach_absolute_time();
     double timeInSeconds = machTimeToSecs(currTime - prevTime);
     prevTime = currTime;
@@ -298,25 +293,20 @@ using namespace cv;
     cv::putText(im, [fpsString UTF8String],
                 cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX,
                 0.8, cv::Scalar::all(0));
-    
 }
 
-// Reset the tracking model on button press
+
+
+// Reset the tracking model
 -(void)resetModel
 {
     model.FrameReset();
 }
 
-// Toggle emotion classification on button press
+// Toggles classification
 -(void)classify
 {
     classify ^= true;
-    if (classify){
-        printf("Classification enabled \n");
-    }
-    else{
-        printf("Classification disabled \n");
-    }
 }
 
 // Tracks with UIImage - not used
@@ -370,14 +360,13 @@ using namespace cv;
     
 }
 
-// Get the tracking model scale
+// Get the tracking model scale - not used
 -(double)getScale {
 	CvMat pose = model._clm._pglobl;
-    //NSLog(@"%f",cvGetReal2D(&pose,0,0));
 	return cvGetReal2D(&pose,0,0) ;
 }
 
-// Get a 3D mesh based on the tracking model
+// Get a 3D mesh based on the tracking model - not used
 -(NSArray *) get3dMesh{
     static cv::Mat mesh;
     
@@ -404,6 +393,7 @@ using namespace cv;
     return meshArray;
 }
 
+// Get a specific tracking point - not used
 -(NSArray *)getSpecificPoint:(int)point {
     
     //NSMutableArray *pointCoords = [[NSMutableArray alloc] init];
@@ -455,8 +445,6 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
         idx=1;
         while (p) {
             eigv[ctr-1].push_back(atof(p));
-            
-            //printf ("Token %d (%d): %f, size now(%lu)\n", ctr, idx, eigv[ctr-1].back(),eigv[ctr-1].size());
             p = strtok(NULL, ",");
             idx++;
         }
@@ -654,7 +642,6 @@ void file2vect (const char* filename, std::vector<double> &vect)
     {
         getline(infile,currentLine); // Saves the line in currentLine.
         char *cstr = new char[currentLine.length() + 1];
-        NSLog(@"%s", cstr);
         strcpy(cstr, currentLine.c_str());
         char *p = strtok(cstr, ","); //separate using comma delimiter
         idx=1;
@@ -681,7 +668,6 @@ void file2vect (const char* filename, std::vector<double> &vect)
     size_t width = CVPixelBufferGetWidth(imageBuffer);
     size_t height = CVPixelBufferGetHeight(imageBuffer);
     //size_t stride = CVPixelBufferGetBytesPerRow(imageBuffer);
-    //NSLog(@"Frame captured: %lu x %lu", width,height);
     
     cv::Mat frame(height, width, CV_8UC4, (void*)baseAddress);
     

@@ -31,13 +31,13 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *initialiseVideoButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *showTrackingButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectEmotionButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *toggleClassifyButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 
 - (IBAction)initialiseVideo:(id)sender;
 - (IBAction)faceTrack:(id)sender;
-- (IBAction)selectEmotion:(id)sender;
+- (IBAction)toggleClassify:(id)sender;
 - (IBAction)settings:(id)sender;
 
 
