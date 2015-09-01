@@ -97,8 +97,6 @@
 		CA8E2AD41B70FDB900A1EC4F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA8E2ADC1B70FDB900A1EC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CACE74F21B84970300E76924 /* merge_files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = merge_files.cpp; path = FaceTracker/merge_files.cpp; sourceTree = "<group>"; };
-		CACE74F31B84970300E76924 /* merge_files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = merge_files.h; path = FaceTracker/merge_files.h; sourceTree = "<group>"; };
 		CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera-32.png"; sourceTree = "<group>"; };
 		CAD11FAE1B713977003ED990 /* camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-32.png"; sourceTree = "<group>"; };
@@ -146,8 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				CA3CB52B1B78A9270056E3C9 /* Classifier */,
-				CACE74F21B84970300E76924 /* merge_files.cpp */,
-				CACE74F31B84970300E76924 /* merge_files.h */,
 				CA3CB5261B78A72B0056E3C9 /* svm.cpp */,
 				CA3CB5241B78A54B0056E3C9 /* svm.h */,
 			);

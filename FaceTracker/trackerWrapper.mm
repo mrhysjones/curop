@@ -46,6 +46,7 @@ using namespace cv;
     int eigsize;
     std::vector<double> test, feat, mu, sigma, eigv[18];
     NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath, *fpsString, *vectorScalePath, *predictPath;
+    NSArray *emotions;
     
 }
 
@@ -115,6 +116,8 @@ using namespace cv;
     predictPath = [[self applicationDocumentsDirectory].path
                    stringByAppendingPathComponent:@"vector.pca.predict"];
     
+    emotions = @[@"Angry", @"Contempt", @"Disgust", @"Fear", @"Happy", @"Sadness", @"Surprise", @"Natural/Other"];
+    
     
     eigsize = 18;
     
@@ -122,17 +125,50 @@ using namespace cv;
     file2vect(muPathString, mu);
     file2vect(sigmaPathString, sigma);
     
+    
+    
     classify = false;
 
 
 }
 
--(void) outputEmotion:(NSString*) path
+-(void) outputEmotion
 {
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    NSLog(@"%@", content);
+    NSArray *lines, *indexes, *values;
+    NSMutableArray *results = [NSMutableArray array];
+    lines = [[NSString stringWithContentsOfFile:predictPath
+                                      encoding:NSASCIIStringEncoding
+                                         error:nil]
+            componentsSeparatedByString:@"\n"];
+    
+    indexes = [lines[0] componentsSeparatedByString:@" "];
+    values = [lines[1] componentsSeparatedByString:@" "];
+    int label = [values[0] integerValue];
+    
+    
+    // Initalise NSMutableArray with 8 objects
+    for(int i = 0; i < 8; i++) {
+        [results addObject:[NSNull null]];
+    }
+    // Place the predictions for each emotion in the right location of the array
+    for (int i = 1; i<9; i++){
+        int index = [indexes[i] integerValue];
+        float value = [values[i] doubleValue];
+        value = value * 100;
+        NSString* formattedNumber = [NSString stringWithFormat:@"%2.4f", value];
+        [results replaceObjectAtIndex:index-1 withObject:formattedNumber];
+    }
+    
+    // Output these values to the screen
+    for (int i = 0; i < 8; i++){
+        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], [results objectAtIndex:i]];
+        cv::putText(im, [emotionString UTF8String],
+                    cv::Point(30, 50+(i*20)), cv::FONT_HERSHEY_COMPLEX_SMALL,
+                    0.8, cv::Scalar::all(255));
+    }
+    
+    
+
 }
 
 
@@ -239,8 +275,7 @@ using namespace cv;
             [svm predictData:vectorScalePathString modelFile:trainPathString];
             
             // Output 'vector.pca.predict' values to the screen
-            [self outputEmotion:vectorScalePath];
-            [self outputEmotion:predictPath];
+            [self outputEmotion];
 
         }
     
