@@ -17,6 +17,7 @@
 @interface svmWrapper : NSObject
 
 -(int)scaleData:(const char*) vectorFile rangeFile: (const char*) rangeFile;
--(int)predictData:(const char*) scaleFile modelFile: (const char*) modelFile;
+-(int)predictData:(const char*) scaleFile;
+-(void)loadModel:(const char *)modelFile;
 
 @end

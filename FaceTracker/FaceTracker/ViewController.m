@@ -25,10 +25,7 @@
     self.tracker = [[trackerWrapper alloc] init];
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
-    
-    // SVM tracker initialisation
-    self.svm = [[svmWrapper alloc] init];
-    
+
 }
 
 // Programmatic way of ensuring the status bar is hidden
@@ -82,7 +79,6 @@
                 frontCamera =  currentDevice;
             }
         }
-        
     }
     return frontCamera;
 }

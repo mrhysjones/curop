@@ -50,17 +50,20 @@ using namespace cv;
     
 }
 
-// Loads in the face tracker and starts the image converter used on samples
+// Loads in the face tracker, SVM model and starts the image converter used on samples
 -(void)initialiseModel
 {
     
     NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"face2" ofType:@"tracker"];
     NSString *triPath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"tri"];
     NSString *conPath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"con"];
+    trainPath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"model"];
     
     const char *modelPathString = [modelPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *triPathString = [triPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *conPathString = [conPath cStringUsingEncoding:NSASCIIStringEncoding];
+    const char* trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
+
     
     
     model.Load(modelPathString);
@@ -69,6 +72,7 @@ using namespace cv;
     
     imageConverter = [[imageConversion alloc] init];
     svm = [[svmWrapper alloc] init];
+    [svm loadModel:trainPathString];
     
 }
 
@@ -92,9 +96,6 @@ using namespace cv;
     clamp=3;
     fTol=0.01;
     failed = true;
-    
-    trainPath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"model"];
-    const char* trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
     
     trainRangePath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"range"];
     
@@ -124,7 +125,6 @@ using namespace cv;
     file2eig(wtPathString,eigv, eigsize);
     file2vect(muPathString, mu);
     file2vect(sigmaPathString, sigma);
-    
     
     
     classify = false;
@@ -262,7 +262,7 @@ using namespace cv;
             [svm scaleData:vectorPathString rangeFile:trainRangePathString];
             
             // SVM prediction based on scaled data
-            [svm predictData:vectorScalePathString modelFile:trainPathString];
+            [svm predictData:vectorScalePathString];
             
             // Output prediction values to the screen
             [self outputEmotion];

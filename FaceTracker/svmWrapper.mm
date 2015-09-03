@@ -211,7 +211,7 @@ char* ln = NULL;
  Corresponds to 'main' function in svm-predict
  Sets up the input file, and SVM model and then passes this to a predict function
  */
--(int)predictData:(const char *)scaleFile modelFile:(const char *)modelFile{
+-(int)predictData:(const char *)scaleFile{
     FILE* scaledVals = NULL;
     predict_probability = 1;
     
@@ -223,21 +223,14 @@ char* ln = NULL;
         exit(1);
     }
     // Load in the SVM model
-    if((model=svm_load_model(modelFile))==0)
-    {
-        fprintf(stderr,"can't open model file %s\n",modelFile);
-        exit(1);
-    }
+
     // Allocate X (for predictions)
     x = (struct svm_node *) malloc(max_nr_attr*sizeof(struct svm_node));
     
     [self predict:scaledVals];
-    svm_free_and_destroy_model(&model);
     free(x);
     free(ln);
     fclose(scaledVals);
-    
-    
     
     return 0;
 }
@@ -451,6 +444,15 @@ char* readPredictLine(FILE *input){
             break;
     }
     return ln;
+}
+
+
+-(void)loadModel:(const char *)modelFile{
+    if((model=svm_load_model(modelFile))==0)
+    {
+        fprintf(stderr,"Can't open the SVM model %s\n",modelFile);
+        exit(1);
+    }
 }
 
 // Cleans up if scaling doesn't complete for a given reason

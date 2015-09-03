@@ -13,9 +13,9 @@
 
 @interface ViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
 {
-    struct svm_model* svmmodel;
+    
+    
 }
-
 
 @property (weak, nonatomic) IBOutlet UIImageView *videoView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
