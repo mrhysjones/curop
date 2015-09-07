@@ -22,7 +22,7 @@
 		CA3CB53E1B78B3B50056E3C9 /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B0E1B7365B7005E92C5 /* PAW.cc */; };
 		CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B101B7365B7005E92C5 /* PDM.cc */; };
 		CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B121B7365B7005E92C5 /* Tracker.cc */; };
-		CA4145AD1B90983400BFE486 /* svmWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4145AC1B90983400BFE486 /* svmWrapper.mm */; };
+		CA4B4CB91B9D8AD000A18023 /* svmWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4145AC1B90983400BFE486 /* svmWrapper.mm */; };
 		CA4E2B211B7365FD005E92C5 /* face.con in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1D1B7365FD005E92C5 /* face.con */; };
 		CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1E1B7365FD005E92C5 /* face.tracker */; };
 		CA4E2B231B7365FD005E92C5 /* face.tri in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1F1B7365FD005E92C5 /* face.tri */; };
@@ -368,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4B4CB91B9D8AD000A18023 /* svmWrapper.mm in Sources */,
 				CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */,
 				CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */,
 				CA3CB53A1B78B3B50056E3C9 /* FCheck.cc in Sources */,
@@ -378,7 +379,6 @@
 				CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */,
 				CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */,
 				CA3CB5371B78B3900056E3C9 /* main.m in Sources */,
-				CA4145AD1B90983400BFE486 /* svmWrapper.mm in Sources */,
 				CA3CB5331B78B35E0056E3C9 /* imageConversion.mm in Sources */,
 				CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */,
 				CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */,

@@ -13,7 +13,6 @@
 #import "svmWrapper.h"
 #import <AVFoundation/AVFoundation.h>
 
-
 @interface trackerWrapper : NSObject
 
 -(void)initialiseModel;
@@ -27,9 +26,6 @@
 -(double)getScale;
 -(NSArray *) get3dMesh;
 -(NSArray *)getSpecificPoint:(int)point;
-
-
-
 
 
 @end

@@ -45,8 +45,9 @@ using namespace cv;
     
     int eigsize;
     std::vector<double> test, feat, mu, sigma, eigv[18];
-    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *vectorPath, *fpsString, *vectorScalePath, *predictPath;
+    NSString *trainPath, *trainRangePath, *muPath, *sigmaPath, *wtPath, *fpsString;
     NSArray *emotions;
+    NSMutableArray *scaledValues, *predictedValues;
     
 }
 
@@ -63,8 +64,6 @@ using namespace cv;
     const char *triPathString = [triPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *conPathString = [conPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char* trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
-
-    
     
     model.Load(modelPathString);
     tri=FACETRACKER::IO::LoadTri(triPathString);
@@ -108,68 +107,30 @@ using namespace cv;
     sigmaPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_sigma" ofType:@"txt"];
     const char *sigmaPathString = [sigmaPath cStringUsingEncoding:NSASCIIStringEncoding];
     
-    vectorPath = [[self applicationDocumentsDirectory].path
-                                   stringByAppendingPathComponent:@"vector.pca"];
-    
-    vectorScalePath = [[self applicationDocumentsDirectory].path
-                       stringByAppendingPathComponent:@"vector.pca.scale"];
-    
-    predictPath = [[self applicationDocumentsDirectory].path
-                   stringByAppendingPathComponent:@"vector.pca.predict"];
-    
     emotions = @[@"Angry", @"Contempt", @"Disgust", @"Fear", @"Happy", @"Sadness", @"Surprise", @"Natural/Other"];
-    
-    
+
     eigsize = 18;
     
     file2eig(wtPathString,eigv, eigsize);
     file2vect(muPathString, mu);
     file2vect(sigmaPathString, sigma);
     
-    
     classify = false;
-
-
 }
 
 -(void) outputEmotion
 {
-    NSArray *lines, *indexes, *values;
-    NSMutableArray *results = [NSMutableArray array];
-    lines = [[NSString stringWithContentsOfFile:predictPath
-                                      encoding:NSASCIIStringEncoding
-                                         error:nil]
-            componentsSeparatedByString:@"\n"];
-    
-    indexes = [lines[0] componentsSeparatedByString:@" "];
-    values = [lines[1] componentsSeparatedByString:@" "];
-    int label = [values[0] integerValue];
-    
-    
-    // Initalise NSMutableArray with 8 objects
-    for(int i = 0; i < 8; i++) {
-        [results addObject:[NSNull null]];
-    }
-    // Place the predictions for each emotion in the right location of the array
-    for (int i = 1; i<9; i++){
-        int index = [indexes[i] integerValue];
-        float value = [values[i] doubleValue];
-        value = value * 100;
-        NSString* formattedNumber = [NSString stringWithFormat:@"%2.4f", value];
-        [results replaceObjectAtIndex:index-1 withObject:formattedNumber];
-    }
-    
     // Output these values to the screen
     for (int i = 0; i < 8; i++){
-        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], [results objectAtIndex:i]];
+        double prediction = [[predictedValues objectAtIndex:i] doubleValue] * 100;
+        NSString *predPercent = [NSString stringWithFormat:@"%2.4f", prediction];
+        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], predPercent];
         cv::putText(im, [emotionString UTF8String],
                     cv::Point(30, 50+(i*20)), cv::FONT_HERSHEY_COMPLEX_SMALL,
                     0.8, cv::Scalar::all(255));
     }
-    
-    
-
 }
+
 // Draw geometry of face on the screen
 -(void) draw
 {
@@ -221,20 +182,14 @@ using namespace cv;
         c = CV_RGB(0,255,0); cv::circle(im,p1,2,c);
         
     }
-    
-    
 }
 
 // Face tracking and classification (conditional on classify variable)
 -(void)track
 {
     const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
-    const char *trainPathString = [trainPath cStringUsingEncoding:NSASCIIStringEncoding];
-    
-    const char *vectorPathString = [vectorPath cStringUsingEncoding:NSASCIIStringEncoding];
 
-    const char *vectorScalePathString = [vectorScalePath cStringUsingEncoding:NSASCIIStringEncoding];
-    
+
     if(failed) {
         wSize = wSize2;
     } else {
@@ -255,14 +210,8 @@ using namespace cv;
             // Perform a PCA projection to produce features
             pca_project(test, eigv, mu, sigma, eigsize, feat);
             
-            // Write principle features to a 'vector.pca' file
-            featfiler(feat, vectorPath);
-                        
-            // Scale that data
-            [svm scaleData:vectorPathString rangeFile:trainRangePathString];
-            
-            // SVM prediction based on scaled data
-            [svm predictData:vectorScalePathString];
+            scaledValues = [svm scaleData:trainRangePathString test:feat];
+            predictedValues = [svm predictData:scaledValues];
             
             // Output prediction values to the screen
             [self outputEmotion];
@@ -321,7 +270,6 @@ using namespace cv;
     cv::cvtColor(im,gray,CV_BGR2GRAY);
     
     [self track];
-    
     
     return [imageConverter UIImageFromMat:im];
     

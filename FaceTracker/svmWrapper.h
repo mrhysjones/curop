@@ -10,14 +10,16 @@
 #import <stdio.h>
 #import <stdlib.h>
 #import <ctype.h>
-#import <string.h>
+#import <string>
 #import <errno.h>
+#import <vector>
 #import "svm.h"
 
 @interface svmWrapper : NSObject
 
--(int)scaleData:(const char*) vectorFile rangeFile: (const char*) rangeFile;
--(int)predictData:(const char*) scaleFile;
 -(void)loadModel:(const char *)modelFile;
+-(NSMutableArray*)scaleData:(const char*) rangeFile test: (std::vector<double>) test;
+-(NSMutableArray*)predictData:(NSMutableArray*) scaledVals;
+
 
 @end
