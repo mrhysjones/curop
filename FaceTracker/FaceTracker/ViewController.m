@@ -33,10 +33,14 @@
     return YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +70,7 @@
      which tracking points to draw, the FPS label, and which emotions 
      to output to the screen
      */
+    [self performSegueWithIdentifier:@"goSettings" sender:self];
 }
 
 // Attempts to find the front camera on the device

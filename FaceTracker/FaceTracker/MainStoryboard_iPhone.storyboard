@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="n2g-fY-smB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="egS-ae-D6H">
+            <objects>
+                <navigationController id="n2g-fY-smB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Bu-8M-7R3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="5cO-Sg-OnM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y5y-YH-xQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-579" y="479"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="5">
             <objects>
@@ -13,7 +29,7 @@
                         <viewControllerLayoutGuide type="bottom" id="nFZ-U5-gYl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjU-6U-uHz">
@@ -73,10 +89,30 @@
                         <outlet property="toggleClassifyButton" destination="ISx-Cv-lkZ" id="uqW-p2-KoR"/>
                         <outlet property="toolbar" destination="fFI-hA-UHL" id="oSN-bg-2x3"/>
                         <outlet property="videoView" destination="gjU-6U-uHz" id="8Us-nU-fLc"/>
+                        <segue destination="gW5-oW-aSZ" kind="push" identifier="goSettings" id="WbS-pf-JsR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wPs-gm-NM5">
+            <objects>
+                <viewController id="gW5-oW-aSZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iLY-en-1xH"/>
+                        <viewControllerLayoutGuide type="bottom" id="ChU-F2-33N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3VH-uH-qVb">
+                        <rect key="frame" x="0.0" y="44" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5D9-SQ-3C1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MDx-Ip-hAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="357"/>
         </scene>
     </scenes>
     <resources>

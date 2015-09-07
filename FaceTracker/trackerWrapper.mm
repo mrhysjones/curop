@@ -376,7 +376,7 @@ void featfiler (std::vector<double> &feat, NSString * filename)
     
 }
 
-// Function to take the eigenvalues from PCA into an eigen value array
+
 void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
 {
     std::string currentLine;

@@ -23,6 +23,7 @@
 		CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B101B7365B7005E92C5 /* PDM.cc */; };
 		CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B121B7365B7005E92C5 /* Tracker.cc */; };
 		CA4B4CB91B9D8AD000A18023 /* svmWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4145AC1B90983400BFE486 /* svmWrapper.mm */; };
+		CA4B4CBC1B9DCFDD00A18023 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B4CBB1B9DCFDD00A18023 /* SettingsViewController.m */; };
 		CA4E2B211B7365FD005E92C5 /* face.con in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1D1B7365FD005E92C5 /* face.con */; };
 		CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1E1B7365FD005E92C5 /* face.tracker */; };
 		CA4E2B231B7365FD005E92C5 /* face.tri in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1F1B7365FD005E92C5 /* face.tri */; };
@@ -63,6 +64,8 @@
 		CA3CB5261B78A72B0056E3C9 /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cpp; sourceTree = "<group>"; };
 		CA4145AC1B90983400BFE486 /* svmWrapper.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = svmWrapper.mm; path = ../svmWrapper.mm; sourceTree = "<group>"; };
 		CA4145AE1B90986D00BFE486 /* svmWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svmWrapper.h; path = ../svmWrapper.h; sourceTree = "<group>"; };
+		CA4B4CBA1B9DCFDD00A18023 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		CA4B4CBB1B9DCFDD00A18023 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CA4E2B041B7365B7005E92C5 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLM.cc; sourceTree = "<group>"; };
 		CA4E2B051B7365B7005E92C5 /* CLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLM.h; sourceTree = "<group>"; };
 		CA4E2B061B7365B7005E92C5 /* FCheck.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FCheck.cc; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */,
 				CA3CB5121B737C3C0056E3C9 /* trackerWrapper.h */,
 				CA4145AC1B90983400BFE486 /* svmWrapper.mm */,
+				CA4B4CBA1B9DCFDD00A18023 /* SettingsViewController.h */,
+				CA4B4CBB1B9DCFDD00A18023 /* SettingsViewController.m */,
 				CA4145AE1B90986D00BFE486 /* svmWrapper.h */,
 				CA8E2AD01B70FDB900A1EC4F /* AppDelegate.h */,
 				CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */,
@@ -371,6 +376,7 @@
 				CA4B4CB91B9D8AD000A18023 /* svmWrapper.mm in Sources */,
 				CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */,
 				CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */,
+				CA4B4CBC1B9DCFDD00A18023 /* SettingsViewController.m in Sources */,
 				CA3CB53A1B78B3B50056E3C9 /* FCheck.cc in Sources */,
 				CA3CB53B1B78B3B50056E3C9 /* FDet.cc in Sources */,
 				CA3CB53C1B78B3B50056E3C9 /* IO.cc in Sources */,
