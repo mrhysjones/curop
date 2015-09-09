@@ -28,17 +28,18 @@
 
 }
 
-// Programmatic way of ensuring the status bar is hidden
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // Added in to hide the navigation bar on the main camera view
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    // Added in to unhide the navigation bar when moving away from camera view
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
@@ -49,31 +50,45 @@
 }
 
 
-// Initialise the camera on button press
+/*! 
+ @brief Set up the capture session and video view
+ 
+ @discussion This method will cause the front camera to be used, and to display the output on a view 
+ */
 - (IBAction)initialiseVideo:(id)sender {
     [self createAndRunNewSession];
 }
 
-// Resets the face tracker on button press if it's not picking up face correctly
+/*! 
+ @brief Resets the face tracking on button press
+ 
+ @discussion This method will allow a user to manually reset the face tracking. It calls the same method that is automatically used when the tracker fails
+ */
 - (IBAction)faceTrack:(id)sender {
     [self.tracker resetModel];
 }
 
-// Toggle emotion classification through button press
+/*!
+ @brief Toggles emotion classification on button press
+ 
+ @discussion This method will call the 'classify' method in the trackerWrapper file, and will set the boolean value that controls classification to the opposite of what it currently is
+ */
 - (IBAction)toggleClassify:(id)sender {
     [self.tracker classify];
 }
 
 - (IBAction)settings:(id)sender {
-    /*
-     To be completed - table view that will allow you to toggle 
-     which tracking points to draw, the FPS label, and which emotions 
-     to output to the screen
-     */
+
     [self performSegueWithIdentifier:@"goSettings" sender:self];
 }
 
-// Attempts to find the front camera on the device
+/*! 
+ @brief Finds the front camera from the available devices
+ 
+ @discussion This method is called to look for all available capture devices, and to find the front camera
+ 
+ @return AVCaptureDevice    Front camera if found, nil otherwise
+ */
 - (AVCaptureDevice *) findFrontCamera
 {
     AVCaptureDevice *frontCamera = nil;
@@ -88,7 +103,12 @@
     return frontCamera;
 }
 
-// Sets up the capture, and starts the running of tracking
+/*!
+ @brief Sets up the input/output required for the app to work 
+ 
+ @discussion This method is used to set up a capture session with the front camera, to set up the output video, and also to handle the video buffer 
+ 
+ */
 - (void) createAndRunNewSession
 {
     self.session = [[AVCaptureSession alloc] init];
@@ -119,7 +139,11 @@
     [self.session startRunning];
 }
 
-// Function that does the processing of the samples
+/*!
+ @brief Applies processsing to the output from the camera
+ 
+ @discussion This method will take a sample from the buffer, and will apply the tracking methods to this sample, before adding the resultant image to the video view
+ */
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
     @autoreleasepool {
