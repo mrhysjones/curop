@@ -12,7 +12,6 @@
 		CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */; };
 		CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */; };
 		CA3CB5361B78B35E0056E3C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2AD41B70FDB900A1EC4F /* ViewController.m */; };
-		CA3CB5371B78B3900056E3C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2ACE1B70FDB900A1EC4F /* main.m */; };
 		CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA3CB5261B78A72B0056E3C9 /* svm.cpp */; };
 		CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B041B7365B7005E92C5 /* CLM.cc */; };
 		CA3CB53A1B78B3B50056E3C9 /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA4E2B061B7365B7005E92C5 /* FCheck.cc */; };
@@ -33,6 +32,7 @@
 		CA64DC651B823A8100C83D97 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */; };
 		CA64DC661B823A8100C83D97 /* pca_archive_sigma.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5D1B823A8100C83D97 /* pca_archive_sigma.txt */; };
 		CA64DC671B823A8100C83D97 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5E1B823A8100C83D97 /* pca_archive_wt.txt */; };
+		CA71B4141BA0533E0095E432 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2ACE1B70FDB900A1EC4F /* main.m */; };
 		CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */; };
 		CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */; };
 		CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */; };
@@ -230,9 +230,9 @@
 				CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */,
 				CA3CB5121B737C3C0056E3C9 /* trackerWrapper.h */,
 				CA4145AC1B90983400BFE486 /* svmWrapper.mm */,
+				CA4145AE1B90986D00BFE486 /* svmWrapper.h */,
 				CA4B4CBA1B9DCFDD00A18023 /* SettingsViewController.h */,
 				CA4B4CBB1B9DCFDD00A18023 /* SettingsViewController.m */,
-				CA4145AE1B90986D00BFE486 /* svmWrapper.h */,
 				CA8E2AD01B70FDB900A1EC4F /* AppDelegate.h */,
 				CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */,
 				CA8E2AD31B70FDB900A1EC4F /* ViewController.h */,
@@ -373,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA71B4141BA0533E0095E432 /* main.m in Sources */,
 				CA4B4CB91B9D8AD000A18023 /* svmWrapper.mm in Sources */,
 				CA3CB5381B78B3B50056E3C9 /* svm.cpp in Sources */,
 				CA3CB5391B78B3B50056E3C9 /* CLM.cc in Sources */,
@@ -384,7 +385,6 @@
 				CA3CB53E1B78B3B50056E3C9 /* PAW.cc in Sources */,
 				CA3CB53F1B78B3B50056E3C9 /* PDM.cc in Sources */,
 				CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */,
-				CA3CB5371B78B3900056E3C9 /* main.m in Sources */,
 				CA3CB5331B78B35E0056E3C9 /* imageConversion.mm in Sources */,
 				CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */,
 				CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */,

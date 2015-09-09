@@ -36,6 +36,7 @@ struct svm_node *x;
 struct svm_model* model;
 int max_nr_attr = 64;
 
+
 // Alternative scaling (no files)
 -(NSMutableArray*)scaleData:(const char*) rangeFile test:(std::vector<double>) test{
     

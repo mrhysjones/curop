@@ -17,6 +17,14 @@
 
 @interface svmWrapper : NSObject
 
+
+/*!
+ @brief Loads SVM model from model file
+ 
+ @discussion This method will call the libSVM method svm_load_model, to create an svm_model to be used throughout the application
+ 
+ @remark This method is called once when the view loads
+ */
 -(void)loadModel:(const char *)modelFile;
 -(NSMutableArray*)scaleData:(const char*) rangeFile test: (std::vector<double>) test;
 -(NSMutableArray*)predictData:(NSMutableArray*) scaledVals;
