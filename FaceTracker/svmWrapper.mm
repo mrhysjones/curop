@@ -15,9 +15,11 @@ using namespace std;
     
 }
 
+// Macro functions to compute min/max
 #define max(x,y) (((x)>(y))?(x):(y))
 #define min(x,y) (((x)<(y))?(x):(y))
 
+// Variables specific to scaleData
 char *l =  NULL;
 int max_line_length = 1024;
 double lower = -1.0, upper = 1.0;
@@ -30,14 +32,13 @@ double y_min = DBL_MAX;
 int max_index;
 int min_index;
 
-// Variables specific to svm-predict
+// Variables specific to predictData
 int predict_probability = 0;
 struct svm_node *x;
 struct svm_model* model;
 int max_nr_attr = 64;
 
 
-// Alternative scaling (no files)
 -(NSMutableArray*)scaleData:(const char*) rangeFile test:(std::vector<double>) test{
     
     int i, index;
@@ -61,6 +62,7 @@ int max_nr_attr = 64;
     int next_index=1;
     double value;
     
+    // Work out feature min/max from test data
     for (int j = 0; j < test.size(); j++){
         index = j+1;
         value = test.at(j);
@@ -86,6 +88,7 @@ int max_nr_attr = 64;
     double fmin, fmax;
     next_index = 1;
     
+    // Work out feature min/max from scaling factors file 
     if((c = fgetc(range)) == 'y')
     {
         if(fscanf(range, "%lf %lf\n", &y_lower, &y_upper) != 2 ||
@@ -120,7 +123,7 @@ int max_nr_attr = 64;
                         i, rangeFile);
     }
     
-    
+    // Perform scaling and add to scaledVals array
     NSMutableArray *scaledVals = [[NSMutableArray alloc] init];
     
     for (int j = 0; j <= test.size(); j++){
@@ -141,13 +144,19 @@ int max_nr_attr = 64;
     return scaledVals;
 }
 
-// Alternative prediction (no files)
+
 -(NSMutableArray*)predictData:(NSMutableArray*) scaledVals{
     NSMutableArray *predictions = [[NSMutableArray alloc] init];
+    
     x = (struct svm_node *) malloc(max_nr_attr*sizeof(struct svm_node));
+    
+    // Number of classes in SVM model
     int nr_class=svm_get_nr_class(model);
+    
+    
     double *prob_estimates=NULL;
     
+    // Get the label ordering from the SVM model
     int *labels=(int *) malloc(nr_class*sizeof(int));
     svm_get_labels(model,labels);
     prob_estimates = (double *) malloc(nr_class*sizeof(double));
@@ -155,16 +164,20 @@ int max_nr_attr = 64;
     int i = 0;
     double predict_label;
     
+    // Build SVM node based on scaled values
     for (int j = 1; j < 18; j++){
         x[i].index = j;
         x[i].value = [[scaledVals objectAtIndex:j] doubleValue];
         ++i;
     }
-
+    
+    // Add a -1 node to signal the end of the data
     x[i].index = -1;
+    
+    // Obtain estimates for each class, as well as the predicted label
     predict_label = svm_predict_probability(model,x,prob_estimates);
     
-    
+    // Put the predicted values into a predicted values array with respect to label ordering
     for(int i = 0; i < 8; i++) {
         [predictions addObject:[NSNull null]];
     }
@@ -179,8 +192,18 @@ int max_nr_attr = 64;
     return predictions;
 }
 
-/*************************************************************************/
-// Supporting functions
+
+/*!
+ @brief Scales a single feature
+ 
+ @discussion Using the feature_max and feature_min arrays, for a given value at a particular feature index, this method will return a new scaled value to be used by the prediction function
+ 
+ @param index   Feature index
+ @param value   Original value of feature
+ 
+ @return NSNumber   Scaled value of feature
+ */
+
 -(NSNumber*)output:(NSNumber*) index value:(NSNumber*) value{
     int idx = [index intValue];
     double val = [value doubleValue];
@@ -201,6 +224,7 @@ int max_nr_attr = 64;
     
 }
 
+
 -(void)loadModel:(const char *)modelFile{
     if((model=svm_load_model(modelFile))==0)
     {
@@ -209,7 +233,19 @@ int max_nr_attr = 64;
     }
 }
 
-// Cleans up if scaling doesn't complete for a given reason
+
+/*!
+ @brief Cleans up during scaling
+ 
+ @discussion If scaling process fails, this function is called to deallocate memory and to close any open files
+ 
+ @param fp_restore  A vector file to scale (currently passed as NULL)
+ @param fp  Vector scaling factors file
+ @param msg Message to output to give reasoning for failure
+ 
+ @return int    -1 when complete
+ */
+
 int clean_up(FILE *fp_restore, FILE *fp, const char* msg)
 {
     fprintf(stderr,	"%s", msg);

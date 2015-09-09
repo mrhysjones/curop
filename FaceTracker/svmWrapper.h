@@ -26,7 +26,31 @@
  @remark This method is called once when the view loads
  */
 -(void)loadModel:(const char *)modelFile;
+
+
+/*!
+ @brief Performs SVM scaling on data
+ 
+ @discussion This method is based on libSVM svm-scale and is used to scale the test data with respect to the scaling factors file associated with the model
+ 
+ @param rangeFile   Scaling factors file 
+ @param test    Vector of test data
+ 
+ @return NSMutableArray Scaled test data
+ 
+ */
 -(NSMutableArray*)scaleData:(const char*) rangeFile test: (std::vector<double>) test;
+
+/*!
+ @brief Performs SVM predictions on data
+ 
+ @discussion This method is based on libSVM svm-predict and is used to predict the probability estimates from a multi-class SVM model
+ 
+ @param scaledVals  Array of scaled test values
+ 
+ @return NSMutableArray Probability estimates for each class of emotion
+ 
+ */
 -(NSMutableArray*)predictData:(NSMutableArray*) scaledVals;
 
 
