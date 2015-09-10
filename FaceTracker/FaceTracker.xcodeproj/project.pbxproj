@@ -27,6 +27,7 @@
 		CA4E2B221B7365FD005E92C5 /* face.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1E1B7365FD005E92C5 /* face.tracker */; };
 		CA4E2B231B7365FD005E92C5 /* face.tri in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1F1B7365FD005E92C5 /* face.tri */; };
 		CA4E2B241B7365FD005E92C5 /* face2.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B201B7365FD005E92C5 /* face2.tracker */; };
+		CA5B98AC1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5B98AB1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard */; };
 		CA64DC611B823A8100C83D97 /* emotions.train.pca.model in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC581B823A8100C83D97 /* emotions.train.pca.model */; };
 		CA64DC621B823A8100C83D97 /* emotions.train.pca.range in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC591B823A8100C83D97 /* emotions.train.pca.range */; };
 		CA64DC651B823A8100C83D97 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */; };
@@ -34,7 +35,6 @@
 		CA64DC671B823A8100C83D97 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5E1B823A8100C83D97 /* pca_archive_wt.txt */; };
 		CA71B4141BA0533E0095E432 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8E2ACE1B70FDB900A1EC4F /* main.m */; };
 		CA8E2ADA1B70FDB900A1EC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */; };
-		CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */; };
 		CAD11FAD1B7138CD003ED990 /* switch_camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */; };
 		CAD11FAF1B713977003ED990 /* camera-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FAE1B713977003ED990 /* camera-32.png */; };
 		CAD11FB41B716C84003ED990 /* happy-32.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD11FB21B716C84003ED990 /* happy-32.png */; };
@@ -86,6 +86,7 @@
 		CA4E2B1E1B7365FD005E92C5 /* face.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tracker; sourceTree = "<group>"; };
 		CA4E2B1F1B7365FD005E92C5 /* face.tri */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tri; sourceTree = "<group>"; };
 		CA4E2B201B7365FD005E92C5 /* face2.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face2.tracker; sourceTree = "<group>"; };
+		CA5B98AB1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		CA64DC581B823A8100C83D97 /* emotions.train.pca.model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.model; sourceTree = "<group>"; };
 		CA64DC591B823A8100C83D97 /* emotions.train.pca.range */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.range; sourceTree = "<group>"; };
 		CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_mu.txt; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		CA8E2AD41B70FDB900A1EC4F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA8E2ADC1B70FDB900A1EC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		CAD11FAC1B7138CD003ED990 /* switch_camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera-32.png"; sourceTree = "<group>"; };
 		CAD11FAE1B713977003ED990 /* camera-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-32.png"; sourceTree = "<group>"; };
 		CAD11FB21B716C84003ED990 /* happy-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy-32.png"; sourceTree = "<group>"; };
@@ -228,6 +228,7 @@
 				CAD120191B7231A7003ED990 /* Frameworks */,
 				CAD11FC11B7173A6003ED990 /* Icons */,
 				CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */,
+				CA5B98AB1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard */,
 				CA3CB5121B737C3C0056E3C9 /* trackerWrapper.h */,
 				CA4145AC1B90983400BFE486 /* svmWrapper.mm */,
 				CA4145AE1B90986D00BFE486 /* svmWrapper.h */,
@@ -237,9 +238,8 @@
 				CA8E2AD11B70FDB900A1EC4F /* AppDelegate.m */,
 				CA8E2AD31B70FDB900A1EC4F /* ViewController.h */,
 				CA8E2AD41B70FDB900A1EC4F /* ViewController.m */,
-				CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */,
-				CAD11FA31B713201003ED990 /* MainStoryboard_iPhone.storyboard */,
 				CA8E2AD91B70FDB900A1EC4F /* Images.xcassets */,
+				CA3CB5151B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard */,
 				CA8E2ADB1B70FDB900A1EC4F /* LaunchScreen.xib */,
 				CA8E2ACC1B70FDB900A1EC4F /* Supporting Files */,
 			);
@@ -350,7 +350,7 @@
 				CA3CB5161B739A8D0056E3C9 /* MainStoryboard_iPad.storyboard in Resources */,
 				CA4E2B231B7365FD005E92C5 /* face.tri in Resources */,
 				CA64DC671B823A8100C83D97 /* pca_archive_wt.txt in Resources */,
-				CAD11FA51B713201003ED990 /* MainStoryboard_iPhone.storyboard in Resources */,
+				CA5B98AC1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard in Resources */,
 				CA64DC651B823A8100C83D97 /* pca_archive_mu.txt in Resources */,
 				CAD11FB51B716C84003ED990 /* name-32.png in Resources */,
 				CAD11FAF1B713977003ED990 /* camera-32.png in Resources */,

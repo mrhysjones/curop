@@ -239,15 +239,14 @@ using namespace cv;
             [self outputEmotion];
 
         }
-        [self outputFPS];
     
     // If unsuccessful tracking - reset the model
     }else{
-        [self outputFPS];
         [self resetModel];
         failed = true;
         
     }
+    [self outputFPS];
 }
 
 /*!
@@ -272,7 +271,6 @@ using namespace cv;
 -(void)resetModel
 {
     model.FrameReset();
-    [self outputFPS];
 }
 
 -(void)classify
@@ -427,23 +425,18 @@ void vect2test (cv::Mat &vect, std::vector<double> &test)
         test.push_back(distance_between(p1,p2)/between_eyes);
     }
     
-    // Left eyebrow points to nose centre distances
-    for(i = 17; i < 22;  i++)
-    {
-        
-        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
-        test.push_back(distance_between(p1,nose)/between_eyes);
-    }
-    
-    // Right eyebrow points to nose centre distances
     for(i = 22; i < 27;  i++)
     {
         
         p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
         test.push_back(distance_between(p1,nose)/between_eyes);
     }
-    
-    // Top of mouth to bottom of mouth distances
+    for(i = 17; i < 22;  i++)
+    {
+        
+        p1 = Point2d(vect.at<double>(i,0), vect.at<double>(i+n,0));
+        test.push_back(distance_between(p1,nose)/between_eyes);
+    }
     for(i = 0; i < 3;  i++)
     {
         
@@ -452,7 +445,6 @@ void vect2test (cv::Mat &vect, std::vector<double> &test)
         test.push_back(distance_between(p1,p2)/between_eyes);
     }
     
-    // Corners of mouth distances
     p1 = Point2d(vect.at<double>(48,0), vect.at<double>(48+n,0));
     p2 = Point2d(vect.at<double>(54,0), vect.at<double>(54+n,0));
     test.push_back(distance_between(p1,p2)/between_eyes);
@@ -468,7 +460,6 @@ void vect2test (cv::Mat &vect, std::vector<double> &test)
     // Centre of mouth distances
     for(i = 0; i < 3;  i++)
     {
-        
         p1 = Point2d(vect.at<double>(60+i,0), vect.at<double>(60+i+n,0));
         p2 = Point2d(vect.at<double>(65-i,0), vect.at<double>(65-i+n,0));
         test.push_back (distance_between(p1,p2)/between_eyes);
