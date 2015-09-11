@@ -551,7 +551,6 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     // Make image the correct orientation for upwards iPad
     cv::Mat dst;
     cv::transpose(frame, dst);
-    cv::flip(dst, dst, 1);
     
     // Convert from native BGRA to RGBA
     cvtColor(dst,frame,CV_BGRA2RGBA);

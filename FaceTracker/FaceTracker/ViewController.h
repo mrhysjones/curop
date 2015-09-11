@@ -29,13 +29,13 @@
 @property (nonatomic, strong) AVCaptureVideoDataOutput *output;
 @property (nonatomic, strong) CIContext *ciContext;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *initialiseVideoButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *switchCameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *showTrackingButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *toggleClassifyButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 
-- (IBAction)initialiseVideo:(id)sender;
+- (IBAction)switchCamera:(id)sender;
 - (IBAction)faceTrack:(id)sender;
 - (IBAction)toggleClassify:(id)sender;
 - (IBAction)settings:(id)sender;

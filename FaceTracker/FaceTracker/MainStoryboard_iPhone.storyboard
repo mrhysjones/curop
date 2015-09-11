@@ -39,26 +39,29 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hNf-ek-7cc"/>
-                                    <barButtonItem image="camera-32.png" id="BZQ-Mw-YPd">
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem image="switch_camera-32.png" id="BZQ-Mw-YPd">
+                                        <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="initialiseVideo:" destination="2" id="07X-Mj-bGz"/>
+                                            <action selector="switchCamera:" destination="2" id="PbI-kq-Bkp"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="PK5-cS-JRc"/>
                                     <barButtonItem image="name-32.png" id="CBG-iL-8r2">
+                                        <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="faceTrack:" destination="2" id="MAi-26-aGw"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ccj-VP-mj9"/>
                                     <barButtonItem image="happy-32.png" width="33" id="ISx-Cv-lkZ">
+                                        <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="toggleClassify:" destination="2" id="ezS-O8-1TN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lJf-yB-aRr"/>
                                     <barButtonItem image="settings-32.png" id="dxi-4m-4BJ">
+                                        <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="settings:" destination="2" id="yKv-a7-7GS"/>
                                         </connections>
@@ -83,9 +86,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="initialiseVideoButton" destination="BZQ-Mw-YPd" id="w9Q-Ga-oFY"/>
                         <outlet property="settingsButton" destination="dxi-4m-4BJ" id="c0o-YF-CSD"/>
                         <outlet property="showTrackingButton" destination="CBG-iL-8r2" id="NtY-Cc-uJ3"/>
+                        <outlet property="switchCameraButton" destination="BZQ-Mw-YPd" id="hcP-ZE-ceW"/>
                         <outlet property="toggleClassifyButton" destination="ISx-Cv-lkZ" id="uqW-p2-KoR"/>
                         <outlet property="toolbar" destination="fFI-hA-UHL" id="oSN-bg-2x3"/>
                         <outlet property="videoView" destination="gjU-6U-uHz" id="8Us-nU-fLc"/>
@@ -100,61 +103,6 @@
         <scene sceneID="D1H-Cf-2Zm">
             <objects>
                 <tableViewController id="h9V-2z-qDw" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MHy-f6-bOu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="rPB-Tz-TQf">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="Ykx-ts-ega">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ykx-ts-ega" id="402-MW-5qG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display FPS Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sL-TQ-7DZ">
-                                                    <rect key="frame" x="8" y="14" width="140" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="l6Q-Nw-nAn">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l6Q-Nw-nAn" id="1YF-MH-JHt">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a84-G0-6HP">
-                                                    <rect key="frame" x="8" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="0lw-J7-edG">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0lw-J7-edG" id="7VP-YF-cAx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="h9V-2z-qDw" id="I4U-YT-cWh"/>
-                            <outlet property="delegate" destination="h9V-2z-qDw" id="J3r-pQ-0am"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" id="GGk-W0-luQ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbJ-ef-FKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,10 +111,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera-32.png" width="32" height="32"/>
         <image name="happy-32.png" width="32" height="32"/>
         <image name="name-32.png" width="32" height="32"/>
         <image name="settings-32.png" width="32" height="32"/>
+        <image name="switch_camera-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

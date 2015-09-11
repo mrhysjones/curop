@@ -16,7 +16,9 @@
 
 @synthesize videoView;
 @synthesize toolbar;
-@synthesize initialiseVideoButton;
+
+
+AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +27,9 @@
     self.tracker = [[trackerWrapper alloc] init];
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
+    
+    // Set up capture
+    [self createAndRunNewSession];
 
 }
 
@@ -55,7 +60,13 @@
  
  @discussion This method will cause the front camera to be used, and to display the output on a view 
  */
-- (IBAction)initialiseVideo:(id)sender {
+- (IBAction)switchCamera:(id)sender {
+    if (pos == AVCaptureDevicePositionFront){
+        pos = AVCaptureDevicePositionBack;
+    }
+    else{
+        pos = AVCaptureDevicePositionFront;
+    }
     [self createAndRunNewSession];
 }
 
@@ -83,24 +94,24 @@
 }
 
 /*! 
- @brief Finds the front camera from the available devices
+ @brief Finds the front/back camera from the available devices
  
- @discussion This method is called to look for all available capture devices, and to find the front camera
+ @discussion This method is called to look for all available capture devices, and to find the camera with specified position
  
- @return AVCaptureDevice    Front camera if found, nil otherwise
+ @return AVCaptureDevice    Camera if found, nil otherwise
  */
-- (AVCaptureDevice *) findFrontCamera
+- (AVCaptureDevice *) findCamera:(AVCaptureDevicePosition) pos
 {
-    AVCaptureDevice *frontCamera = nil;
+    AVCaptureDevice *camera = nil;
     NSArray *devices = [AVCaptureDevice devices];
     for (AVCaptureDevice *currentDevice in devices) {
         if ([currentDevice hasMediaType:AVMediaTypeVideo]) {
-            if ([currentDevice position] == AVCaptureDevicePositionFront) {
-                frontCamera =  currentDevice;
+            if ([currentDevice position] == pos) {
+                camera =  currentDevice;
             }
         }
     }
-    return frontCamera;
+    return camera;
 }
 
 /*!
@@ -116,7 +127,7 @@
     
     self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
-    self.device = [self findFrontCamera];
+    self.device = [self findCamera:pos];
     self.input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
     
     self.output = [[AVCaptureVideoDataOutput alloc] init];
