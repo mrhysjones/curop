@@ -12,6 +12,7 @@
 #import "imageConversion.h"
 #import "svmWrapper.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SettingsSingleton.h"
 
 @interface trackerWrapper : NSObject
 

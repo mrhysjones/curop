@@ -28,6 +28,7 @@
 		CA4E2B231B7365FD005E92C5 /* face.tri in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B1F1B7365FD005E92C5 /* face.tri */; };
 		CA4E2B241B7365FD005E92C5 /* face2.tracker in Resources */ = {isa = PBXBuildFile; fileRef = CA4E2B201B7365FD005E92C5 /* face2.tracker */; };
 		CA5B98AC1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5B98AB1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard */; };
+		CA5B98E01BA467F200E34306 /* SettingsSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5B98DF1BA467F200E34306 /* SettingsSingleton.m */; };
 		CA64DC611B823A8100C83D97 /* emotions.train.pca.model in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC581B823A8100C83D97 /* emotions.train.pca.model */; };
 		CA64DC621B823A8100C83D97 /* emotions.train.pca.range in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC591B823A8100C83D97 /* emotions.train.pca.range */; };
 		CA64DC651B823A8100C83D97 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */; };
@@ -87,6 +88,8 @@
 		CA4E2B1F1B7365FD005E92C5 /* face.tri */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tri; sourceTree = "<group>"; };
 		CA4E2B201B7365FD005E92C5 /* face2.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face2.tracker; sourceTree = "<group>"; };
 		CA5B98AB1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		CA5B98DF1BA467F200E34306 /* SettingsSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSingleton.m; sourceTree = "<group>"; };
+		CA5B98E11BA4680900E34306 /* SettingsSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsSingleton.h; sourceTree = "<group>"; };
 		CA64DC581B823A8100C83D97 /* emotions.train.pca.model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.model; sourceTree = "<group>"; };
 		CA64DC591B823A8100C83D97 /* emotions.train.pca.range */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emotions.train.pca.range; sourceTree = "<group>"; };
 		CA64DC5C1B823A8100C83D97 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_mu.txt; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				CAD120191B7231A7003ED990 /* Frameworks */,
 				CAD11FC11B7173A6003ED990 /* Icons */,
 				CA3CB5131B737C3C0056E3C9 /* trackerWrapper.mm */,
+				CA5B98DF1BA467F200E34306 /* SettingsSingleton.m */,
+				CA5B98E11BA4680900E34306 /* SettingsSingleton.h */,
 				CA5B98AB1BA1CD6700E34306 /* MainStoryboard_iPhone.storyboard */,
 				CA3CB5121B737C3C0056E3C9 /* trackerWrapper.h */,
 				CA4145AC1B90983400BFE486 /* svmWrapper.mm */,
@@ -387,6 +392,7 @@
 				CA3CB5401B78B3B50056E3C9 /* Tracker.cc in Sources */,
 				CA3CB5331B78B35E0056E3C9 /* imageConversion.mm in Sources */,
 				CA3CB5341B78B35E0056E3C9 /* trackerWrapper.mm in Sources */,
+				CA5B98E01BA467F200E34306 /* SettingsSingleton.m in Sources */,
 				CA3CB5351B78B35E0056E3C9 /* AppDelegate.m in Sources */,
 				CA3CB5361B78B35E0056E3C9 /* ViewController.m in Sources */,
 			);

@@ -16,6 +16,7 @@
 
 @synthesize videoView;
 @synthesize toolbar;
+@synthesize options;
 
 
 AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
@@ -28,9 +29,11 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     [self.tracker initialiseModel];
     [self.tracker initialiseValues];
     
-    // Set up capture
+    // Initialise capture and video view
     [self createAndRunNewSession];
-
+    
+    // Load in user settings to the settings singleton
+    [self loadUserSettings];
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -41,6 +44,9 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     // Added in to hide the navigation bar on the main camera view
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    if (options == 1){
+        NSLog(@"Hey there");
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -114,6 +120,24 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     return camera;
 }
 
+
+
+-(void) loadUserSettings
+{
+    // Ensure that singleton updates from stored user values 
+    NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+    
+    [[SettingsSingleton sharedMySingleton] toggleFPS:[d boolForKey:@"fpsValue"]];
+     
+    [[SettingsSingleton sharedMySingleton] togglePoints:[d boolForKey:@"pointsValue"]];
+    
+    [[SettingsSingleton sharedMySingleton] toggleConnections:[d boolForKey:@"connectionValue"]];
+    
+    [[SettingsSingleton sharedMySingleton] toggleTriangulation:[d boolForKey:@"triangulationValue"]];
+}
+
+
+
 /*!
  @brief Sets up the input/output required for the app to work 
  
@@ -128,7 +152,16 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     self.device = [self findCamera:pos];
+    
+    
+    if ([self.device lockForConfiguration:nil]) {
+        if ([self.device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]){
+            [self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+        }
+        [self.device unlockForConfiguration];
+    }
     self.input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
+
     
     self.output = [[AVCaptureVideoDataOutput alloc] init];
     self.output.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];

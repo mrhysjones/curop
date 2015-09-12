@@ -17,6 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSDictionary * defaults = @{
+                                @"fpsValue" : @NO,
+                                @"pointsValue": @YES,
+                                @"connectionValue": @YES,
+                                @"triangulationValue":@YES
+                                } ;
+    [ [ NSUserDefaults standardUserDefaults ] registerDefaults:defaults ] ;
     return YES;
 }
 

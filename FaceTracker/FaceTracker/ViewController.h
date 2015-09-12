@@ -17,6 +17,8 @@
     
 }
 
+@property int options;
+
 @property (weak, nonatomic) IBOutlet UIImageView *videoView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 

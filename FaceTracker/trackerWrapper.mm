@@ -161,45 +161,49 @@ using namespace cv;
 
     c = CV_RGB(255,0,0);
     
-    // Draw triangulation
-    for(i = 0; i < tri.rows; i++){
-        if(visi.at<int>(tri.at<int>(i,0),0) == 0 ||
-           visi.at<int>(tri.at<int>(i,1),0) == 0 ||
-           visi.at<int>(tri.at<int>(i,2),0) == 0)continue;
-        p1 = cv::Point(shape.at<double>(tri.at<int>(i,0),0),
-                       shape.at<double>(tri.at<int>(i,0)+n,0));
-        p2 = cv::Point(shape.at<double>(tri.at<int>(i,1),0),
-                       shape.at<double>(tri.at<int>(i,1)+n,0));
-        cv::line(im,p1,p2,c);
-        p1 = cv::Point(shape.at<double>(tri.at<int>(i,0),0),
-                       shape.at<double>(tri.at<int>(i,0)+n,0));
-        p2 = cv::Point(shape.at<double>(tri.at<int>(i,2),0),
-                       shape.at<double>(tri.at<int>(i,2)+n,0));
-        cv::line(im,p1,p2,c);
-        p1 = cv::Point(shape.at<double>(tri.at<int>(i,2),0),
-                       shape.at<double>(tri.at<int>(i,2)+n,0));
-        p2 = cv::Point(shape.at<double>(tri.at<int>(i,1),0),
-                       shape.at<double>(tri.at<int>(i,1)+n,0));
-        cv::line(im,p1,p2,c);
-    }
-
-    // Draw connections
-    for(i = 0; i < con.cols; i++){
-        if(visi.at<int>(con.at<int>(0,i),0) == 0 ||
-           visi.at<int>(con.at<int>(1,i),0) == 0)continue;
-        p1 = cv::Point(shape.at<double>(con.at<int>(0,i),0),
-                       shape.at<double>(con.at<int>(0,i)+n,0));
-        p2 = cv::Point(shape.at<double>(con.at<int>(1,i),0),
-                       shape.at<double>(con.at<int>(1,i)+n,0));
-        cv::line(im,p1,p2,c,1);
+    if ([[SettingsSingleton sharedMySingleton] getTriangulation]){
+        
+        for(i = 0; i < tri.rows; i++){
+            if(visi.at<int>(tri.at<int>(i,0),0) == 0 ||
+               visi.at<int>(tri.at<int>(i,1),0) == 0 ||
+               visi.at<int>(tri.at<int>(i,2),0) == 0)continue;
+            p1 = cv::Point(shape.at<double>(tri.at<int>(i,0),0),
+                           shape.at<double>(tri.at<int>(i,0)+n,0));
+            p2 = cv::Point(shape.at<double>(tri.at<int>(i,1),0),
+                           shape.at<double>(tri.at<int>(i,1)+n,0));
+            cv::line(im,p1,p2,c);
+            p1 = cv::Point(shape.at<double>(tri.at<int>(i,0),0),
+                           shape.at<double>(tri.at<int>(i,0)+n,0));
+            p2 = cv::Point(shape.at<double>(tri.at<int>(i,2),0),
+                           shape.at<double>(tri.at<int>(i,2)+n,0));
+            cv::line(im,p1,p2,c);
+            p1 = cv::Point(shape.at<double>(tri.at<int>(i,2),0),
+                           shape.at<double>(tri.at<int>(i,2)+n,0));
+            p2 = cv::Point(shape.at<double>(tri.at<int>(i,1),0),
+                           shape.at<double>(tri.at<int>(i,1)+n,0));
+            cv::line(im,p1,p2,c);
+        }
     }
     
-    // Draw points
-    for(i = 0; i < n; i++){
-        if(visi.at<int>(i,0) == 0)continue;
-        p1 = cv::Point(shape.at<double>(i,0),shape.at<double>(i+n,0));
-        c = CV_RGB(0,255,0); cv::circle(im,p1,2,c);
-        
+    if ([[SettingsSingleton sharedMySingleton] getConnections]){
+        for(i = 0; i < con.cols; i++){
+            if(visi.at<int>(con.at<int>(0,i),0) == 0 ||
+               visi.at<int>(con.at<int>(1,i),0) == 0)continue;
+            p1 = cv::Point(shape.at<double>(con.at<int>(0,i),0),
+                           shape.at<double>(con.at<int>(0,i)+n,0));
+            p2 = cv::Point(shape.at<double>(con.at<int>(1,i),0),
+                           shape.at<double>(con.at<int>(1,i)+n,0));
+            cv::line(im,p1,p2,c,1);
+        }
+    }
+
+    
+    if([[SettingsSingleton sharedMySingleton] getPoints]){
+        for(i = 0; i < n; i++){
+            if(visi.at<int>(i,0) == 0)continue;
+            p1 = cv::Point(shape.at<double>(i,0),shape.at<double>(i+n,0));
+            c = CV_RGB(0,255,0); cv::circle(im,p1,2,c);
+        }
     }
 }
 /*!
@@ -246,7 +250,9 @@ using namespace cv;
         failed = true;
         
     }
-    [self outputFPS];
+    if ([[SettingsSingleton sharedMySingleton] getFPS]){
+        [self outputFPS];
+    }
 }
 
 /*!
@@ -288,7 +294,6 @@ void featfiler (std::vector<double> &feat, NSString * filename)
     [fStr writeToFile:filename
            atomically:YES
                  encoding:NSASCIIStringEncoding error:NULL];
-    
 }
 
 /*!
