@@ -17,12 +17,33 @@
 @property (strong, nonatomic) IBOutlet UISwitch *pointsSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *triangulationSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *connectionSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *angrySwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *contemptSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *disgustSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *happySwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *fearSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *sadnessSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *surpriseSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *naturalSwitch;
 
 
-// Switch value changed actions
+// General settings toggled
 - (IBAction)fpsToggle:(id)sender;
+
+//Drawing settings toggled
 - (IBAction)pointsToggle:(id)sender;
 - (IBAction)triangulationToggle:(id)sender;
 - (IBAction)connectionToggle:(id)sender;
+
+// Classification settings toggled
+- (IBAction)angryToggle:(id)sender;
+- (IBAction)contemptToggle:(id)sender;
+- (IBAction)disgustToggle:(id)sender;
+- (IBAction)happyToggle:(id)sender;
+- (IBAction)fearToggle:(id)sender;
+- (IBAction)sadnessToggle:(id)sender;
+- (IBAction)surpriseToggle:(id)sender;
+- (IBAction)naturalToggle:(id)sender;
+
 
 @end

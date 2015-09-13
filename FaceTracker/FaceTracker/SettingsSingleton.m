@@ -35,7 +35,11 @@ static SettingsSingleton* _sharedMySingleton = nil;
         fps = NO;
         connections = YES;
         triangulation = YES;
-        points = YES; 
+        points = YES;
+        emotions = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 8; i++){
+            [emotions addObject:[NSNumber numberWithBool:YES]];
+        }
     }
     return self;
 }
@@ -57,6 +61,10 @@ static SettingsSingleton* _sharedMySingleton = nil;
     return connections;
 }
 
+-(NSMutableArray* )getEmotions{
+    return emotions;
+}
+
 -(void)toggleFPS:(BOOL) val{
     fps = val;
 }
@@ -72,6 +80,12 @@ static SettingsSingleton* _sharedMySingleton = nil;
 -(void)toggleConnections:(BOOL)val{
     connections = val;
 }
+
+-(void)toggleEmotion:(BOOL) val index:(int)index{
+    [emotions replaceObjectAtIndex:index withObject:@(val)];
+}
+
+
 
 
 @end

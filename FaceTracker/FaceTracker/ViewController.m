@@ -134,6 +134,15 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     [[SettingsSingleton sharedMySingleton] toggleConnections:[d boolForKey:@"connectionValue"]];
     
     [[SettingsSingleton sharedMySingleton] toggleTriangulation:[d boolForKey:@"triangulationValue"]];
+    
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"angryValue"] index:0];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"contemptValue"] index:1];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"disgustValue"] index:2];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"fearValue"] index:3];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"happyValue"] index:4];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"sadnessValue"] index:5];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"surpriseValue"] index:6];
+    [[SettingsSingleton sharedMySingleton] toggleEmotion:[d boolForKey:@"naturalValue"] index:7];
 }
 
 

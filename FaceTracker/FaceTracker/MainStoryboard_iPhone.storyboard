@@ -199,6 +199,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="BGY-2c-EBa" id="HeE-jG-6eb"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="A4I-6I-isl" style="IBUITableViewCellStyleDefault" id="s2U-hj-J6v">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -213,6 +216,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="Gpo-ZQ-QRa" id="WPE-vI-7fu"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zQu-8j-PXV" style="IBUITableViewCellStyleDefault" id="3mV-HS-sL1">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -227,13 +233,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="7PZ-ey-4J2" id="Sur-SX-oJx"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="1am-ql-2TL" style="IBUITableViewCellStyleDefault" id="7NY-PC-Jhi">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7NY-PC-Jhi" id="j9j-gh-q6f">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Happy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1am-ql-2TL">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fear" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1am-ql-2TL">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -241,13 +250,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="50B-W3-zfm" id="deJ-yd-xZq"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="k1G-pH-epa" style="IBUITableViewCellStyleDefault" id="Of5-D9-wL6">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Of5-D9-wL6" id="dxU-HI-37H">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fear" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k1G-pH-epa">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Happy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k1G-pH-epa">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -255,6 +267,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="kGC-uq-86j" id="r8j-4g-WQk"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="wO0-Xz-jw3" style="IBUITableViewCellStyleDefault" id="4Nx-L4-CeV">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -269,6 +284,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="2a2-sp-xeI" id="jTw-ev-nLm"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="GmJ-b9-afi" style="IBUITableViewCellStyleDefault" id="64f-EO-Gct">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -283,6 +301,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="3ax-o1-PDy" id="dKB-Em-9gm"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ffy-bY-SP9" style="IBUITableViewCellStyleDefault" id="MKV-GV-r4n">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -297,6 +318,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accessoryView" destination="NE2-NO-fsM" id="wiK-EX-xQs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -308,9 +332,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="GGk-W0-luQ"/>
                     <connections>
+                        <outlet property="angrySwitch" destination="BGY-2c-EBa" id="SwM-d1-k1d"/>
                         <outlet property="connectionSwitch" destination="Ybl-r3-XQn" id="8BR-P4-n1L"/>
+                        <outlet property="contemptSwitch" destination="Gpo-ZQ-QRa" id="7lF-W5-hBz"/>
+                        <outlet property="disgustSwitch" destination="7PZ-ey-4J2" id="SX1-Mx-yCc"/>
+                        <outlet property="fearSwitch" destination="50B-W3-zfm" id="DLO-jg-70Q"/>
                         <outlet property="fpsSwitch" destination="y4N-Q5-Kpd" id="yOw-CT-3ey"/>
+                        <outlet property="happySwitch" destination="kGC-uq-86j" id="Nfi-kc-0no"/>
+                        <outlet property="naturalSwitch" destination="NE2-NO-fsM" id="9Y9-v1-lbY"/>
                         <outlet property="pointsSwitch" destination="m4v-ge-eg3" id="kdY-gg-gh8"/>
+                        <outlet property="sadnessSwitch" destination="2a2-sp-xeI" id="AFg-rV-Zef"/>
+                        <outlet property="surpriseSwitch" destination="3ax-o1-PDy" id="ROc-lA-v1J"/>
                         <outlet property="triangulationSwitch" destination="tHq-GI-8TL" id="lge-EM-8vj"/>
                     </connections>
                 </tableViewController>
@@ -343,25 +375,64 @@
                         <action selector="connectionToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="NTr-Zm-6DI"/>
                     </connections>
                 </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="BGY-2c-EBa" userLabel="Angry Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="angryToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="28N-y8-Xm6"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Gpo-ZQ-QRa" userLabel="Contempt Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="contemptToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="AM7-C1-XzA"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="7PZ-ey-4J2" userLabel="Disgust Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="disgustToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="G9f-kH-nc9"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="50B-W3-zfm" userLabel="Fear Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="fearToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="7dG-jr-cFw"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="kGC-uq-86j" userLabel="Happy Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="happyToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="9jx-io-8uF"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="2a2-sp-xeI" userLabel="Sadness Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="sadnessToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="z76-F2-6uT"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="3ax-o1-PDy" userLabel="Surprise Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="surpriseToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="g2m-NE-Ms4"/>
+                    </connections>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="NE2-NO-fsM" userLabel="Natural Switch">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="naturalToggle:" destination="h9V-2z-qDw" eventType="valueChanged" id="v8g-dQ-Enm"/>
+                    </connections>
+                </switch>
             </objects>
             <point key="canvasLocation" x="723" y="195"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="V3M-rl-vBD">
-            <objects>
-                <viewController id="JhU-yw-nlt" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NdT-pm-Plv"/>
-                        <viewControllerLayoutGuide type="bottom" id="BfZ-Nl-pwE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="05a-ns-yDL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kck-Nv-nQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

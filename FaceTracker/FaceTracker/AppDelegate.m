@@ -21,7 +21,15 @@
                                 @"fpsValue" : @NO,
                                 @"pointsValue": @YES,
                                 @"connectionValue": @YES,
-                                @"triangulationValue":@YES
+                                @"triangulationValue":@YES,
+                                @"angryValue": @YES,
+                                @"contemptValue": @YES,
+                                @"disgustValue": @YES,
+                                @"happyValue": @YES,
+                                @"fearValue": @YES,
+                                @"sadnessValue": @YES,
+                                @"surpriseValue": @YES,
+                                @"naturalValue": @YES
                                 } ;
     [ [ NSUserDefaults standardUserDefaults ] registerDefaults:defaults ] ;
     return YES;

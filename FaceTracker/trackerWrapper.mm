@@ -134,14 +134,19 @@ using namespace cv;
  */
 -(void) outputEmotion
 {
+    int h = 50;
+    NSMutableArray* e = [[SettingsSingleton sharedMySingleton] getEmotions];
     // Output these values to the screen
     for (int i = 0; i < 8; i++){
-        double prediction = [[predictedValues objectAtIndex:i] doubleValue] * 100;
-        NSString *predPercent = [NSString stringWithFormat:@"%2.4f", prediction];
-        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], predPercent];
-        cv::putText(im, [emotionString UTF8String],
-                    cv::Point(30, 50+(i*20)), cv::FONT_HERSHEY_COMPLEX_SMALL,
-                    0.8, cv::Scalar::all(255));
+        if ([[e objectAtIndex:i] boolValue]){
+            double prediction = [[predictedValues objectAtIndex:i] doubleValue] * 100;
+            NSString *predPercent = [NSString stringWithFormat:@"%2.4f", prediction];
+            NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], predPercent];
+            cv::putText(im, [emotionString UTF8String],
+                        cv::Point(30, h), cv::FONT_HERSHEY_COMPLEX_SMALL,
+                        0.8, cv::Scalar::all(0));
+            h = h + 20;
+        }
     }
 }
 

@@ -21,7 +21,7 @@
 @property (readwrite) BOOL points;
 @property (readwrite) BOOL triangulation;
 @property (readwrite) BOOL connections;
-
+@property (readwrite) NSMutableArray* emotions;
 
 +(SettingsSingleton*)sharedMySingleton;
 
@@ -30,11 +30,13 @@
 -(void)togglePoints:(BOOL) val;
 -(void)toggleTriangulation:(BOOL) val;
 -(void)toggleConnections:(BOOL) val;
+-(void)toggleEmotion:(BOOL) val index:(int)index;
 
 // Access booleans
 -(BOOL)getFPS;
 -(BOOL)getPoints;
 -(BOOL)getTriangulation;
 -(BOOL)getConnections;
+-(NSMutableArray*)getEmotions;
 
 @end
