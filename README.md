@@ -33,9 +33,9 @@ Supervision by [Professor A D Marshall](http://www.cs.cf.ac.uk/Dave/) and [Profe
 - Improve the UI - particularly how results are displayed
 
 ## Screenshots
-[Face tracking demo](Screenshots/tracked.jpg)
-[Surprise emotion classification demo](Screenshots/surprise.jpg)
-[Settings](Screenshots/settings.jpg)
+![Face tracking demo](Screenshots/tracked.jpg)
+![Surprise emotion classification demo](Screenshots/surprise.jpg)
+![Settings](Screenshots/settings.jpg)
 
 
 
