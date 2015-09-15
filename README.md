@@ -1,6 +1,6 @@
 # Face tracking and emotion classification iOS app
 
-iOS application developed during an 8-week [CUROP](http://learning.cf.ac.uk/curop/) research project at Cardiff University entitled 'Facial expression analysis on a smartphone'.
+iOS (iPhone/iPad) application developed during an 8-week [CUROP](http://learning.cf.ac.uk/curop/) research project at Cardiff University entitled 'Facial expression analysis on a smartphone'.
 
 ## Acknowledgements
 
@@ -33,9 +33,12 @@ Supervision by [Professor A D Marshall](http://www.cs.cf.ac.uk/Dave/) and [Profe
 - Improve the UI - particularly how results are displayed
 
 ## Screenshots
-![Face tracking demo](Screenshots/tracked.jpg)
-![Surprise emotion classification demo](Screenshots/surprise.jpg)
-![Settings](Screenshots/settings.jpg)
+![Face tracking demo](Screenshots/tracked.jpg "Facial landmark tracking")
+*Facial landmark tracking*
+![Surprise emotion classification demo](Screenshots/surprise.jpg "Surprise emotion detection")
+*Surprise emotion detection with confidence value outputted*
+![Settings](Screenshots/settings.jpg "In-app settings")
+*Available in-app settings*
 
 
 
