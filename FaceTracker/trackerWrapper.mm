@@ -134,7 +134,14 @@ using namespace cv;
  */
 -(void) outputEmotion
 {
-    int h = 50;
+    int h;
+    
+    if ([[SettingsSingleton sharedMySingleton] getFPS]){
+        h = 50;
+    }
+    else{
+        h = 30;
+    }
     NSMutableArray* e = [[SettingsSingleton sharedMySingleton] getEmotions];
     // Output these values to the screen
     for (int i = 0; i < 8; i++){
