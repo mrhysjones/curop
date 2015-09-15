@@ -33,11 +33,11 @@ Supervision by [Professor A D Marshall](http://www.cs.cf.ac.uk/Dave/) and [Profe
 - Improve the UI - particularly how results are displayed
 
 ## Screenshots
-![Face tracking demo](Screenshots/tracked.jpg "Facial landmark tracking")
-*Facial landmark tracking*
-![Surprise emotion classification demo](Screenshots/surprise.jpg "Surprise emotion detection")
-*Surprise emotion detection with confidence value outputted*
-![Settings](Screenshots/settings.jpg "In-app settings")
+![Face tracking demo](Screenshots/tracked.jpg "Facial landmark tracking")<br />
+*Facial landmark tracking*<br />
+![Surprise emotion classification demo](Screenshots/surprise.jpg "Surprise emotion detection")<br />
+*Surprise emotion detection with confidence value outputted*<br />
+![Settings](Screenshots/settings.jpg "In-app settings")<br />
 *Available in-app settings*
 
 
