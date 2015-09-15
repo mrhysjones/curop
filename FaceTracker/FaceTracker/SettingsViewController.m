@@ -29,7 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Make sure that the switch states match the user preferences
     fpsSwitch.on = [ [ NSUserDefaults standardUserDefaults ] boolForKey:@"fpsValue" ];
     pointsSwitch.on = [ [ NSUserDefaults standardUserDefaults ] boolForKey:@"pointsValue" ] ;
     connectionSwitch.on = [ [ NSUserDefaults standardUserDefaults ] boolForKey:@"connectionValue" ] ;
@@ -150,6 +151,7 @@
         [[SettingsSingleton sharedMySingleton] toggleEmotion:NO index:4    ];
     }
     [[NSUserDefaults standardUserDefaults] setBool:happySwitch.on forKey:@"happyValue"];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

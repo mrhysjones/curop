@@ -28,7 +28,13 @@ static SettingsSingleton* _sharedMySingleton = nil;
     }
     return nil;
 }
-
+/*!
+ @brief Initialisation method
+ 
+ @discussion This method will initialise the class and will set the default values for the settings
+ 
+ @return id Returns the object after initialisation
+ */
 -(id)init{
     self = [super init];
     if (self != nil) {

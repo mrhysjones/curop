@@ -12,11 +12,15 @@
 
 @interface SettingsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>;
 
-// Switch outlets
+// General settings switches
 @property (strong, nonatomic) IBOutlet UISwitch *fpsSwitch;
+
+// Face tracking settings switches
 @property (strong, nonatomic) IBOutlet UISwitch *pointsSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *triangulationSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *connectionSwitch;
+
+// Classification settings switches
 @property (strong, nonatomic) IBOutlet UISwitch *angrySwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *contemptSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *disgustSwitch;
@@ -25,7 +29,6 @@
 @property (strong, nonatomic) IBOutlet UISwitch *sadnessSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *surpriseSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *naturalSwitch;
-
 
 // General settings toggled
 - (IBAction)fpsToggle:(id)sender;

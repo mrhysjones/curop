@@ -16,7 +16,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Override point for customization after application launch
+    
+    
+    // Load in the user defaults for the settings view controller
     NSDictionary * defaults = @{
                                 @"fpsValue" : @NO,
                                 @"pointsValue": @YES,
