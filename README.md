@@ -27,7 +27,7 @@ Supervision by [Professor A D Marshall](http://www.cs.cf.ac.uk/Dave/) and [Profe
 
 ## Future improvements
 - Optimise the emotion classifier feature space
-- Retrain emotion classifier on more data
+- ~~Retrain emotion classifier on more data~~
 - Implement the ability to send tracking data to another device for other applications/analysis
 - Investigate if any improvements can be made to the tracker library to increase FPS
 - Improve the UI - particularly how results are displayed
